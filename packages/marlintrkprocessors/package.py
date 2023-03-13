@@ -14,7 +14,7 @@ class Marlintrkprocessors(CMakePackage, Ilcsoftpackage):
     git      = "https://github.com/MuonColliderSoft/MarlinTrkProcessors.git"
     url      = "https://github.com/MuonColliderSoft/MarlinTrkProcessors/archive/refs/tags/v02-14-MC.tar.gz"
 
-    maintainers = ['vvolkl']
+    maintainers = ['gianelle', 'pandreetto']
 
     version('master', branch='master')
     version("2.14",   sha256="618722f38f60a30c4048c97fd0b4ba5f89e81104")
