@@ -9,16 +9,17 @@ from spack.pkg.k4.key4hep_stack import Ilcsoftpackage
 class Lctuple(CMakePackage, Ilcsoftpackage):
     """Marlin package that creates a ROOT TTree with a column wise ntuple from LCIO collections."""
 
-    url      = "https://github.com/iLCSoft/LCTuple/archive/v01-12.tar.gz"
-    homepage = "https://github.com/iLCSoft/LCTuple"
-    git      = "https://github.com/iLCSoft/LCTuple.git"
+    homepage = "https://github.com/MuonColliderSoft/LCTuple"
+    git      = "https://github.com/MuonColliderSoft/LCTuple.git"
+    url      = "https://github.com/MuonColliderSoft/LCTuple/archive/refs/tags/v01-15-MC.tar.gz"
 
-    maintainers = ['vvolkl']
+    maintainers = ['gianelle', 'pandreetto']
 
     version('master', branch='master')
-    version('1.14', sha256='7088a6923c4e4c3ac327965c8d41f53eb1403134a9df52e43635fa5eaef48581')
-    version('1.13', sha256='35f2ff3d4b89a3fd7e87f6f5c9fec2178afec26ae8c89d30a5b0bcf113d2107f')
-    version('1.12', sha256='e0e7c4c86f257027a7e9b1c42438087a7b0919964f9719080be25df8a0f95968')
+    version('1.15',   sha256='742e9849929d80485f8d2da22a50a7c98f61adaf')
+    version('1.14',   sha256='1d56e1ffe59ed24f890cd412d5fa7c2026f67702')
+    version('1.13',   sha256='d53cc628b7efe48f1282f9655872aaa27c85d380')
+    version('1.12',   sha256='aa9289efcf0b936e8a6613a008cda8ab8d7eb5d3')
 
 
     depends_on('ilcutil')

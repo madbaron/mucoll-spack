@@ -9,15 +9,14 @@ from spack.pkg.k4.key4hep_stack import Ilcsoftpackage
 class Ddmarlinpandora(CMakePackage, Ilcsoftpackage):
     """Interface between Marlin and PandoraPFA."""
 
-    url      = "https://github.com/iLCSoft/DDMarlinPandora/archive/v00-11.tar.gz"
-    homepage      = "https://github.com/iLCSoft/DDMarlinPandora/archive/v00-11.tar.gz"
-    git      = "https://github.com/iLCSoft/DDMarlinPandora.git"
+    homepage = "https://github.com/MuonColliderSoft/DDMarlinPandora"
+    git      = "https://github.com/MuonColliderSoft/DDMarlinPandora.git"
+    url      = "https://github.com/MuonColliderSoft/DDMarlinPandora/archive/refs/tags/v00-14-MC.tar.gz"
 
-    maintainers = ['vvolkl']
+    maintainers = ['gianelle', 'pandreetto']
 
     version('master', branch='master')
-    version('0.12', sha256='4f90c2ef240c2fa1f293498bf35201d1337651f8847d53da7124a61091bb504e')
-    version('0.11', sha256='92410186209508091e0a8e330986283ffb32e40fd7195d10aad1a6a2e953f3ee')
+    version('0.14', sha256='2f5f3bac02d6b0b6ced65aface5d78dbadc60ea6')
 
     depends_on('ilcutil')
     depends_on('marlinutil')

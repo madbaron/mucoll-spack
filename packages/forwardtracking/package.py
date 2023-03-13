@@ -9,15 +9,14 @@ from spack.pkg.k4.key4hep_stack import Ilcsoftpackage
 class Forwardtracking(CMakePackage, Ilcsoftpackage):
     """Track Reconstruction for the Forward Direction (for the FTD)"""
 
-    url      = "https://github.com/iLCSoft/ForwardTracking/archive/v01-14.tar.gz"
-    homepage = "https://github.com/iLCSoft/ForwardTracking"
-    git      = "https://github.com/iLCSoft/ForwardTracking.git"
+    homepage = "https://github.com/MuonColliderSoft/ForwardTracking"
+    git      = "https://github.com/MuonColliderSoft/ForwardTracking.git"
+    url      = "https://github.com/MuonColliderSoft/ForwardTracking/archive/refs/tags/v01-14-mucoll-01.tar.gz"
 
-    maintainers = ['vvolkl']
+    maintainers = ['gianelle', 'pandreetto']
 
     version('master', branch='master')
-    version('1.14.1', sha256='39f2a858baaedd703dbc30f0c813c641d63dcac8e735716730bb3d46ca3e474f')
-    version('1.14', sha256='99149d170a1ae179500b2c47ec79dca227ff96c0bdf0cd69f2075eb468177a5e')
+    version('1.14.1', sha256='d5d6a34730b2024022d4f57a5f250e508b53cae2')
 
     patch('testing.patch', when="@:1.15")
 
