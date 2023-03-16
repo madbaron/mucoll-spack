@@ -3,10 +3,10 @@
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
-from spack.pkg.k4.key4hep_stack import Ilcsoftpackage
+from spack.pkg.mucoll.mucoll_stack import MCIlcsoftpackage
 
 
-class Lcgeo(CMakePackage, Ilcsoftpackage):
+class Lcgeo(CMakePackage, MCIlcsoftpackage):
     """DD4hep geometry models for future colliders."""
 
     homepage = "https://github.com/MuonColliderSoft/lcgeo"
@@ -18,10 +18,10 @@ class Lcgeo(CMakePackage, Ilcsoftpackage):
     maintainers = ['gianelle', 'pandreetto']
 
     version('master',  branch='master')
-    version("0.17",    sha256="15933f25cda16a312bc0413e896401b65702b94f")
-    version("0.16.08", sha256="831f3363dff6519719686e27cc9a05cf60926734")
-    version("0.16.07", sha256="1ca26fe531671a34e6a0a41cc625638b4f065fbf")
-    version("0.16.06", sha256="975bf03213415a8109b26f0d05d1a402729778ce")
+    version('0.17',    sha256='5ab33aaf5bc37deba82c2dde78cdce6c0041257222ed7ea052ecdd388a41cf9b')
+    version('0.16.8',  sha256='03417825f5bf242e0cd3ba24f7b4e7c3030126bcbb961f6d2e045e3d9404abfe')
+    version('0.16.7',  sha256='8090819e1e35b0e5f439bcf1cd0940bb861ac2bbba7a2d2a19858ed9fa5c6ccb')
+    version('0.16.6',  sha256='d03977f5d3f20e885e2183e63eaeed612b6c8df168ff08140ac9fa105b1b07ed')
 
     variant('cxxstd',
             default='17',
@@ -37,13 +37,11 @@ class Lcgeo(CMakePackage, Ilcsoftpackage):
     depends_on('python', type='build')
     depends_on('ninja', type='build')
 
-
     def cmake_args(self):
         args = []  
         args.append(self.define_from_variant('CMAKE_CXX_STANDARD', 'cxxstd'))
         args.append(self.define('BUILD_TESTING', self.run_tests))
         return args
-
 
     @run_after('install')
     def install_compact(self):

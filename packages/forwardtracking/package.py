@@ -3,20 +3,20 @@
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
-from spack.pkg.k4.key4hep_stack import Ilcsoftpackage
+from spack.pkg.mucoll.mucoll_stack import MCIlcsoftpackage
 
 
-class Forwardtracking(CMakePackage, Ilcsoftpackage):
+class Forwardtracking(CMakePackage, MCIlcsoftpackage):
     """Track Reconstruction for the Forward Direction (for the FTD)"""
 
     homepage = "https://github.com/MuonColliderSoft/ForwardTracking"
     git      = "https://github.com/MuonColliderSoft/ForwardTracking.git"
-    url      = "https://github.com/MuonColliderSoft/ForwardTracking/archive/refs/tags/v01-14-mucoll-01.tar.gz"
+    url      = "https://github.com/MuonColliderSoft/ForwardTracking/archive/refs/tags/v01-14-MC.tar.gz"
 
     maintainers = ['gianelle', 'pandreetto']
 
     version('master', branch='master')
-    version('1.14.1', sha256='d5d6a34730b2024022d4f57a5f250e508b53cae2')
+    version('1.14',   sha256='00e4fd4fc4be2c0c6febf6927fd5b37856ecb80a82d62836086ce4b53c1fb107')
 
     patch('testing.patch', when="@:1.15")
 
@@ -30,6 +30,7 @@ class Forwardtracking(CMakePackage, Ilcsoftpackage):
     depends_on('root')
     depends_on('clhep')
     depends_on('raida')
+
 
     def cmake_args(self):
         args = []

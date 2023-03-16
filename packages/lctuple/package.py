@@ -3,10 +3,10 @@
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
-from spack.pkg.k4.key4hep_stack import Ilcsoftpackage
+from spack.pkg.mucoll.mucoll_stack import MCIlcsoftpackage
 
 
-class Lctuple(CMakePackage, Ilcsoftpackage):
+class Lctuple(CMakePackage, MCIlcsoftpackage):
     """Marlin package that creates a ROOT TTree with a column wise ntuple from LCIO collections."""
 
     homepage = "https://github.com/MuonColliderSoft/LCTuple"
@@ -15,12 +15,11 @@ class Lctuple(CMakePackage, Ilcsoftpackage):
 
     maintainers = ['gianelle', 'pandreetto']
 
-    version('master', branch='master')
-    version('1.15',   sha256='742e9849929d80485f8d2da22a50a7c98f61adaf')
-    version('1.14',   sha256='1d56e1ffe59ed24f890cd412d5fa7c2026f67702')
-    version('1.13',   sha256='d53cc628b7efe48f1282f9655872aaa27c85d380')
-    version('1.12',   sha256='aa9289efcf0b936e8a6613a008cda8ab8d7eb5d3')
-
+    version('master',  branch='master')
+    version('1.15',    sha256='4db2360a58ec51df44c84acf95560d6723f4130ba61834c0c9b2153ece28d212')
+    version('1.14',    sha256='3311c84c21123bf572dda99bfc56327382b7377f0449ed5b4e998dc9ff864390')
+    version('1.13',    sha256='704b89051db8409f6d55baf1fa1094e6ec5322b799e1431ed97e9b28a42f610a')
+    version('1.12.2',  sha256='52e925398cf997dfe093b8a7085c683244aa8469b19f514239ebc4f08ab1870d')
 
     depends_on('ilcutil')
     depends_on('marlin')

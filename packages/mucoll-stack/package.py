@@ -1,4 +1,13 @@
 from datetime import datetime
+import os
+
+# import common methods for use in recipe from common.py
+# (so other recipe can import from spack.pkg.mucoll.mucoll_stack)
+# (which is the most convenient way to make that code available
+#  without creation of a new module
+import sys
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from mucoll_utils import *
 
 from spack.pkg.k4.key4hep_stack import Key4hepPackage
 from spack.pkg.k4.key4hep_stack import install_setup_script

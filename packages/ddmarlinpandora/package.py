@@ -3,10 +3,10 @@
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
-from spack.pkg.k4.key4hep_stack import Ilcsoftpackage
+from spack.pkg.mucoll.mucoll_stack import MCIlcsoftpackage
 
 
-class Ddmarlinpandora(CMakePackage, Ilcsoftpackage):
+class Ddmarlinpandora(CMakePackage, MCIlcsoftpackage):
     """Interface between Marlin and PandoraPFA."""
 
     homepage = "https://github.com/MuonColliderSoft/DDMarlinPandora"
@@ -16,7 +16,9 @@ class Ddmarlinpandora(CMakePackage, Ilcsoftpackage):
     maintainers = ['gianelle', 'pandreetto']
 
     version('master', branch='master')
-    version('0.14', sha256='2f5f3bac02d6b0b6ced65aface5d78dbadc60ea6')
+    version('0.14',  sha256='b22f1fb589d59b9878d746632ad74ca76a03153b16c8901023eecc7469f6dbdb')
+    version('0.13',  sha256='1e14a89cd408f597f27b2743af7684068457d6f0b0e1737f03e8093d9deb23d3')
+    version('0.12',  sha256='39b0d22b9b4527bce11f3a741f102660d7986dadb4eca085de91f0d256855ddc')
 
     depends_on('ilcutil')
     depends_on('marlinutil')

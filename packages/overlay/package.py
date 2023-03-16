@@ -3,22 +3,22 @@
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
-from spack.pkg.k4.key4hep_stack import Ilcsoftpackage
+from spack.pkg.mucoll.mucoll_stack import MCIlcsoftpackage
 
 
-class Overlay(CMakePackage, Ilcsoftpackage):
+class Overlay(CMakePackage, MCIlcsoftpackage):
     """The package Overlay provides code for event overlay with Marlin."""
 
     homepage = "https://github.com/MuonColliderSoft/Overlay"
     git      = "https://github.com/MuonColliderSoft/Overlay.git"
-    url      = "https://github.com/iLCSoft/Overlay/archive/v00-22.tar.gz"
+    url      = "https://github.com/MuonColliderSoft/Overlay/archive/refs/tags/v00-24-MC.tar.gz"
 
     maintainers = ['gianelle', 'pandreetto']
 
-    version('master', branch='master')
-    version('0.24',   sha256='https://github.com/MuonColliderSoft/Overlay/commit/e1cf5d283293fecbf20da89e925707f01a2a1eff')
-    version('0.23',   sha256='https://github.com/MuonColliderSoft/Overlay/commit/e581bd5d37e4da09373200c0628f86c6785e3040')
-    version('0.22',   sha256='https://github.com/MuonColliderSoft/Overlay/commit/c6f6501dbff4aa0873e0a55ef7709208b8f471e4')
+    version('master',  branch='master')
+    version('0.24',    sha256='83ddebb4c3e36b9b5bda2acfb658e5fd0fd2b31f5e5a38c54f72601379949c04')
+    version('0.23',    sha256='b885bed6c386676e74db21dafde6bc08bcac2a16df89892759415fb8bbb331ed')
+    version('0.22.2',  sha256='9d4ed2d218897f0cbec233d5c588db41bd002dcd5ce809f5b3bad7767408de58')
 
     depends_on('ilcutil')
     depends_on('marlin')

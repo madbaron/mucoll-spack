@@ -5,9 +5,10 @@
 
 
 from spack.package import *
+from spack.pkg.mucoll.mucoll_stack import MCIlcsoftpackage
 
 
-class Lcio(CMakePackage):
+class Lcio(CMakePackage, MCIlcsoftpackage):
     """HEP Library for Linear Collider Input/Output"""
 
     homepage = "http://lcio.desy.de"
@@ -18,10 +19,10 @@ class Lcio(CMakePackage):
 
     maintainers = ['gianelle', 'pandreetto']
 
-    version("master", branch="master")
-    version("2.17",   sha256="1117e13474a3be2ef50eff1cfaf0ce10dd2b4214")
-    version("2.16",   sha256="d24904c9040a8deda631d1a203252ff3eb53f90d")
-    version("2.15",   sha256="bf8bafb2db7dde6d6367ad87034b89ea170a0aea")
+    version("master",  branch="master")
+    version('2.17',    sha256='b04422eaf224a0e64d5410bedc47bf0259912990fda136ec3dcdaee8c79e6b86')
+    version('2.16.1',  sha256='e5319053c1f8fe7be40fb250e3694c926595533b13e108a08cb718a04bef137e')
+    version('2.15.4',  sha256='80a6be5bf14c33e62710f55850985a347529b42c8279e6d230ba7b48a420b596')
 
     variant(
         "cxxstd",
@@ -45,10 +46,8 @@ class Lcio(CMakePackage):
     depends_on("sio@0.1:", when="@2.16:")
 
     depends_on("root@6.04:", when="+rootdict")
-    depends_on("root@6.04: cxxstd=11", when="+rootdict cxxstd=11")
-    depends_on("root@6.04: cxxstd=14", when="+rootdict cxxstd=14")
-    depends_on("root@6.04: cxxstd=17", when="+rootdict cxxstd=17")
-    depends_on("root@6.04: cxxstd=20", when="+rootdict cxxstd=20")
+    for cxx in ['11', '14', '17', '20']:
+        depends_on(f"root@6.04: cxxstd={cxx}", when=f"+rootdict cxxstd={cxx}")
     depends_on("openjdk", when="+jar")
     # build error with +termlib, to be investigated
     depends_on("ncurses~termlib", when="+examples")

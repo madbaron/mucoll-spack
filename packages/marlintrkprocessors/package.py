@@ -4,10 +4,10 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 
-from spack.pkg.k4.key4hep_stack import Ilcsoftpackage
+from spack.pkg.mucoll.mucoll_stack import MCIlcsoftpackage
 
 
-class Marlintrkprocessors(CMakePackage, Ilcsoftpackage):
+class Marlintrkprocessors(CMakePackage, MCIlcsoftpackage):
     """A collection of Tracking Relelated Processors Based on MarlinTrk"""
 
     homepage = "https://github.com/MuonColliderSoft/MarlinTrkProcessors"
@@ -17,10 +17,10 @@ class Marlintrkprocessors(CMakePackage, Ilcsoftpackage):
     maintainers = ['gianelle', 'pandreetto']
 
     version('master', branch='master')
-    version("2.14",   sha256="618722f38f60a30c4048c97fd0b4ba5f89e81104")
-    version("2.13",   sha256="19ec367391e4405616a13418e3f9eb09a3247a73")
-    version("2.12",   sha256="61a87aa1ab4b4f66102f27f9861319500edc638a")
-    version("2.11",   sha256="4d2dcf0f04d9c02ba8630929e339f742df098760")
+    version('2.14',   sha256='3fda69fbbd23e8e3e7f3c47d898dcd301693286f0a17854e919cfbe68bf3918f')
+    version('2.13',   sha256='a44fe66a62d252f5226ca710a913fca6337812af1b7937bfb050d8f2d34df011')
+    version('2.12',   sha256='458b3e428aece3b7749bb292695320a1126d246ee40da8eede2a13714b204615')
+    version('2.11',   sha256='ee1f5958e4b7a44b4ba2d231465c6d0e8d031d8091383393ca5de24381f1e883')
 
     depends_on('marlin')
     depends_on('marlinutil')
@@ -31,7 +31,6 @@ class Marlintrkprocessors(CMakePackage, Ilcsoftpackage):
     depends_on('gsl')
     depends_on('ddkaltest')
     depends_on('raida')
-
 
     def setup_run_environment(self, spack_env):
         spack_env.prepend_path('MARLIN_DLL', self.prefix.lib + "/libMarlinTrkProcessors.so")
