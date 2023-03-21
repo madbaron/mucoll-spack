@@ -148,6 +148,10 @@ class MucollStack(BundlePackage, Key4hepPackage):
     depends_on('sio')
 
 
+    ############ custom Muon Collider packages ############
+    #######################################################
+    depends_on('actstracking')
+    depends_on('muoncvxddigitiser')
 
 
     ##################### developer tools #################

@@ -8,6 +8,8 @@ from spack.pkg.k4.key4hep_stack import Key4hepPackage
 class MCIlcsoftpackage(Key4hepPackage):
     """Repeating the equivalent class in key4hep-spack repository"""
 
+    maintainers = ['gianelle', 'pandreetto']
+
     def url_for_version(self, version):
         """Translate version numbers to the MuColl forked ILCSoft convention
            i.e. using dashed separator, leading zeros and '-MC' suffix
