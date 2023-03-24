@@ -1,30 +1,14 @@
 packages:
   geant4:
-    variants: ~qt+opengl+vecgeom cxxstd=17
-    buildable: true
-    version: []
-    target: []
-    providers: {}
-    compiler: []
+    variants: +qt+opengl+vecgeom cxxstd=17
   root:
     variants: +davix+gsl+math~memstat+minuit+mlp+opengl~postgres~pythia6+pythia8+python~qt4+r+root7+roofit+rpath~shadow+sqlite+ssl~table+tbb+threads+tmva+unuran+vc+vdt+x+xml+xrootd cxxstd=17 build_type=RelWithDebInfo
-    buildable: true
-    target: []
-    providers: {}
-    compiler: []
   dd4hep:
     variants: +lcio+xercesc+hepmc3+edm4hep
-    buildable: true
-    version: []
-    target: []
-    providers: {}
-    compiler: []
   all:
     target: [x86_64]
     variants: build_type=Release cxxstd=17
     buildable: true
-    version: []
     providers:
       gl: [mesa]
       glu: [mesa]
-    compiler: []

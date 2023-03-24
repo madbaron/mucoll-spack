@@ -1,0 +1,103 @@
+packages:
+  geant4:
+    version: ['10.6.3']
+    variants: +qt+opengl+vecgeom cxxstd=17
+  root:
+    version: ['6.26.6']
+    variants: +davix+gsl+math~memstat+minuit+mlp+opengl~postgres~pythia6+pythia8+python~qt4+r+root7+roofit+rpath~shadow+sqlite+ssl~table+tbb+threads+tmva+unuran+vc+vdt+x+xml+xrootd cxxstd=17 build_type=RelWithDebInfo
+  dd4hep:
+    version: ['1.23']
+    variants: +lcio+xercesc+hepmc3~edm4hep
+
+  marlindd4hep:
+    version: ['0.6.2']
+  marlin:
+    version: ['1.19']
+  marlinreco:
+    version: ['1.33.1']
+  marlinutil:
+    version: ['1.17']
+
+  pandoraanalysis:
+    version: ['2.0.1']
+  pandorapfa:
+    version: ['4.2.0']
+  ddmarlinpandora:
+    version: ['0.14']
+
+  lcfivertex:
+    version: ['0.8']
+  lcfiplus:
+    version: ['0.10.1']
+  marlinfastjet:
+    version: ['0.5.3']
+  marlintrk:
+    version: ['2.9.1']
+  marlintrkprocessors:
+    version: ['2.14']
+  forwardtracking:
+    version: ['1.14']
+  conformaltracking:
+    version: ['1.12']
+
+  acts:
+    version: ['13.0.0']
+  actstracking:
+    version: ['1.1.0']
+
+  kitrack:
+    version: ['1.10']
+  kitrackmarlin:
+    version: ['1.13.2']
+
+  ddkaltest:
+    version: ['1.7']
+  kaltest:
+    version: ['2.5.1']
+  kaldet:
+    version: ['1.14.1']
+
+  marlinkinfit:
+    version: ['0.6.1']
+  marlinkinfitprocessors:
+    version: ['0.5']
+
+  lctuple:
+    version: ['1.15']
+  clicperformance:
+    version: ['2.4.1']
+  muoncvxddigitiser:
+    version: ['master']
+
+  cedviewer:
+    version: ['1.19.1']
+  overlay:
+    version: ['0.24']
+  lcgeo:
+    version: ['0.17']
+  lcio:
+    version: ['2.17']
+  gear:
+    version: ['1.9.1']
+  garlic:
+    version: ['3.1']
+  ced:
+    version: ['1.9.4']
+  sio:
+    version: ['0.1']
+  ilcutil:
+    version: ['1.7']
+  aidatt:
+    version: ['0.1']
+  raida:
+    version: ['1.9.0']
+  generalbrokenlines:
+    version: ['2.2.1']
+
+  all:
+    target: [x86_64]
+    variants: build_type=Release cxxstd=17
+    buildable: true
+    providers:
+      gl: [mesa]
+      glu: [mesa]

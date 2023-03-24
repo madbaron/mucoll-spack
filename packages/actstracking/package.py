@@ -19,10 +19,17 @@ class Actstracking(CMakePackage, Key4hepPackage):
     version('1.1.0', sha256='d565e70a2fec97d0d2e81ada69ed54ef8dacc44b0f608b4cf3dffa561091afeb')
     version('1.0.0', sha256='0e98f2185920358d9c220883a48df42f3b5282beb32a91a19f9f3f5c1adc103b')
 
+    # Ensuring correct ACTS version due to its evolving API
+    depends_on('acts +dd4hep+tgeo+identification+json+fatras')
+    depends_on('acts@13 +dd4hep+tgeo+identification+json+fatras', when="@:1.1.0")
 
-    depends_on('acts@:13 +dd4hep+tgeo+identification+json+fatras')
+    depends_on('dd4hep')
     depends_on('ilcutil')
-    depends_on('marlin')
+    depends_on('marlin@1.0:')
+    depends_on('root')
+
+    # Building in parallel may fail
+    parallel = False
 
     
     def setup_run_environment(self, spack_env):
