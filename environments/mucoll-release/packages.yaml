@@ -5,7 +5,7 @@ packages:
   root:
     require: '@6.26.6 +davix+gsl+math~memstat+minuit+mlp+opengl~postgres~pythia6+pythia8+python~qt4+r+root7+roofit+rpath~shadow+sqlite+ssl~table+tbb+threads+tmva+unuran+vc+vdt+x+xml+xrootd cxxstd=17 build_type=RelWithDebInfo'
   dd4hep:
-    require: '@1.23 +lcio+xercesc+hepmc3~edm4hep'
+    require: '@1.23 +lcio+xercesc+hepmc3+edm4hep'
 
   marlindd4hep:
     require: '@0.6.2'
@@ -91,6 +91,15 @@ packages:
     require: '@1.9.0'
   generalbrokenlines:
     require: '@2.2.1'
+
+  guinea-pig:
+    variants: +fftw3
+  fftw:
+    variants: ~mpi
+  mesa:
+    variants: ~llvm+glx+opengl swr=none
+  whizard:
+    variants: ~fastjet~latex+lcio~lhapdf+openloops~openmp+pythia8 hepmc=3
 
   all:
     target: [x86_64]
