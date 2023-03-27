@@ -27,14 +27,7 @@ class Lcio(CMakePackage, MCIlcsoftpackage):
     variant(
         "cxxstd",
         default="17",
-        values=(
-            "11",
-            "14",
-            "17",
-            "20",
-            # c++17 became minimum with 2.18
-            conditional("17", "20", when="@2.18:"),
-        ),
+        values=("11", "14", "17", "20"),
         multi=False,
         description="Use the specified C++ standard when building.",
     )
