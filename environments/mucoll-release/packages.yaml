@@ -86,7 +86,7 @@ packages:
   lcgeo:
     require: '@0.17'
   lcio:
-    require: '@2.17'
+    require: '@2.19.1'
   gear:
     require: '@1.9.1'
   garlic:
