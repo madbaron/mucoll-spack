@@ -98,7 +98,7 @@ packages:
   ilcutil:
     require: '@1.7'
   aidatt:
-    require: '@0.1'
+    require: '@0.10'
   raida:
     require: '@1.9.0'
   generalbrokenlines:
@@ -112,6 +112,8 @@ packages:
     variants: ~llvm+glx+opengl swr=none
   whizard:
     variants: ~fastjet~latex+lcio~lhapdf+openloops~openmp+pythia8 hepmc=3
+  pythia8:
+    variants: ~hepmc+hepmc3
 
   all:
     target: [x86_64]
