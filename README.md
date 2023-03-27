@@ -14,7 +14,7 @@ spack env create sim
 spack env activate sim
 
 # Copy package configurations
-cp ./mucoll-spack/environments/mucoll-release/packages.yaml $SPACK_ENV/
+cp ./mucoll-spack/environments/mucoll-release/*.yaml $SPACK_ENV/
 
 # Install the software stack
 spack add mucoll-stack
@@ -45,6 +45,26 @@ spack checksum lcgeo 0.17
 2. Add the returned version definition to the corresponding package file: [`packages/lcgeo/package.py`](packages/lcgeo/package.py)
 
 > NOTE: This repository only contains packages maintained by the Muon Collider collaboration.
-> If the version of interest is missing from Spack for an external package, the line with new version definition should be added to the package file in the corresponding repository.
+> If the version of interest is missing from Spack for an external package, the line with new version definition should be added to the package file in the corresponding repository.  
 > To see locations of other repositories: `spack repo list`
 
+## Creating a new stack release
+
+To introduce a new release version for the whole software stack, update the version number in [`packages/mucoll-stack/package.py`](packages/mucoll-stack/package.py) and then update versions of all the relevant packages in [environments/mucoll-release/packages.yaml].  
+Test this new configuration in a fresh environment:
+```bash
+# Create a development environment
+spack env create dev
+spack env activate dev
+
+# Copy the package configuration
+cp ./mucoll-spack/environments/mucoll-release/*.yaml $SPACK_ENV/
+
+# Add stack with updated version to the environment
+spack add mucoll-stack
+
+# Check which packages would be installed
+spack spec --reuse -NIt
+```
+
+If the previous release is already installed in a separate environment, packages that have not changed since last release will be marked as installed, providing a convenient overview of changes in the new release.

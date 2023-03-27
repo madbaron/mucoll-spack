@@ -1,3 +1,4 @@
+# Very loose requirements for nightly builds
 packages:
   geant4:
     variants: +qt+opengl+vecgeom cxxstd=17
