@@ -1,9 +1,19 @@
 # Strict version requirements for stable builds
 packages:
+  # low-level dependencies (might be worth to let them free)
+  boost:
+    require: '@1.73.0'
+  eigen:
+    require: '@3.3.7'
+  gsl:
+    require: '@2.6'
+  qt:
+    require: '@5.13.1'
+
   geant4:
     require: '@10.6.3 +qt+opengl+vecgeom cxxstd=17'
   root:
-    require: '@6.26.6 +davix+gsl+math~memstat+minuit+mlp+opengl~postgres~pythia6+pythia8+python~qt4+r+root7+roofit+rpath~shadow+sqlite+ssl~table+tbb+threads+tmva+unuran+vc+vdt+x+xml+xrootd cxxstd=17 build_type=RelWithDebInfo'
+    require: '@6.26.6 +davix+gsl+math~memstat+minuit+mlp+opengl~postgres~pythia6+pythia8+python~qt4~r+root7+roofit+rpath~shadow+sqlite+ssl~table+tbb+threads+tmva+unuran+vc+vdt+x+xml+xrootd cxxstd=17 build_type=RelWithDebInfo'
   dd4hep:
     require: '@1.23 +lcio+xercesc+hepmc3+edm4hep'
 
@@ -27,6 +37,8 @@ packages:
     require: '@0.8'
   lcfiplus:
     require: '@0.10.1'
+  fastjet:
+    require: '@3.2.1'
   marlinfastjet:
     require: '@0.5.3'
   marlintrk:
