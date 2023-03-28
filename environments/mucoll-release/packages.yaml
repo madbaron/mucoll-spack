@@ -1,15 +1,5 @@
 # Strict version requirements for stable builds
 packages:
-  # low-level dependencies (might be worth to let them free)
-  boost:
-    require: '@1.73.0'
-  eigen:
-    require: '@3.3.7'
-  gsl:
-    require: '@2.6'
-  qt:
-    require: '@5.13.1'
-
   geant4:
     require: '@10.6.3 +qt+opengl+vecgeom cxxstd=17'
   root:
