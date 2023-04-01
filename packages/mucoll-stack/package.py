@@ -1,7 +1,6 @@
-from datetime import datetime
 import os
 
-# import common methods for use in recipe from common.py
+# import common methods for use in recipe from mucoll_utils.py
 # (so other recipe can import from spack.pkg.mucoll.mucoll_stack)
 # (which is the most convenient way to make that code available
 #  without creation of a new module
@@ -9,8 +8,7 @@ import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from mucoll_utils import *
 
-from spack.pkg.k4.key4hep_stack import Key4hepPackage
-from spack.pkg.k4.key4hep_stack import install_setup_script
+from spack.pkg.k4.key4hep_stack import Key4hepPackage, install_setup_script
 
 
 class MucollStack(BundlePackage, Key4hepPackage):
@@ -44,8 +42,7 @@ class MucollStack(BundlePackage, Key4hepPackage):
 
     ############################### Key4hep ###############
     #######################################################
-    depends_on('guinea-pig')
-    depends_on('whizard +lcio +openloops hepmc=2')
+    depends_on('whizard +lcio +openloops')
     depends_on('k4lcioreader')
     depends_on('k4simdelphes')
     depends_on('delphes')
@@ -118,6 +115,7 @@ class MucollStack(BundlePackage, Key4hepPackage):
         # set locale to avoid certain issues with xerces-c
         # (see https://github.com/key4hep/key4hep-spack/issues/170)
         spack_env.set("LC_ALL", "C")
+        spack_env.set('MUCOLL_STACK', os.path.join(self.spec.prefix, 'setup.sh'))
 
     def install(self, spec, prefix):
-        return install_setup_script(self, spec, prefix, 'ILCSOFT_LATEST_SETUP_PATH')
+        return install_setup_script(self, spec, prefix, 'MUCOLL_LATEST_SETUP_PATH')
