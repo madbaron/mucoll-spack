@@ -18,11 +18,20 @@ cp ./mucoll-spack/environments/mucoll-release/*.yaml $SPACK_ENV/
 
 # Install the software stack
 spack add mucoll-stack
-spack concretize
+spack concretize --reuse
 spack install --fail-fast
 
-# Load packages into environment
-spack load
+# Load the Muon Collider environment
+source $MUCOLL_STACK
+```
+
+## Setting up the environment
+
+When signing in to a machine with the installed sofware stack (VM or Docker container), it has to be loaded into the environment:
+
+```bash
+spack env activate sim
+source $MUCOLL_STACK
 ```
 
 ## Package versioning
@@ -33,7 +42,7 @@ Conversion to tag names in `mucoll` packages is provided by `MCIlcsoftpackage` c
 
 ## Adding new versions for individual packages
 
-After a new tag for repository is created, e.g. `v00-17-MC` in `lcgeo` repository, it can be added to this Spack repository in two steps:
+After a new tag for the package is created, e.g. `v00-17-MC` in `lcgeo` repository, it can be added to this Spack repository in two steps:
 
 1. Get the archive checksum for the new tag
 ```bash
@@ -45,7 +54,7 @@ spack checksum lcgeo 0.17
 2. Add the returned version definition to the corresponding package file: [`packages/lcgeo/package.py`](packages/lcgeo/package.py)
 
 > NOTE: This repository only contains packages maintained by the Muon Collider collaboration.
-> If the version of interest is missing from Spack for an external package, the line with new version definition should be added to the package file in the corresponding repository.  
+> If the version of interest is missing from Spack for some other package, the line with a new version definition should be added to the package file in the corresponding repository.  
 > To see locations of other repositories: `spack repo list`
 
 ## Creating a new stack release
@@ -67,4 +76,4 @@ spack add mucoll-stack
 spack spec --reuse -NIt
 ```
 
-If the previous release is already installed in a separate environment, packages that have not changed since last release will be marked as installed, providing a convenient overview of changes in the new release.
+Packages that are already installed in the `sim` environment are known to Spack and will be reused, providing a clear indication of which part of the dependency tree will be modified by the new release.
