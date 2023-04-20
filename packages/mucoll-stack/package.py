@@ -15,6 +15,8 @@ class MucollStack(BundlePackage, Key4hepPackage):
     """Bundle package to install Ilcsoft"""
     
     homepage = 'https://github.com/MuonColliderSoft'
+    
+    maintainers = ['bartosik-hep']
 
     ##################### versions ########################
     #######################################################
