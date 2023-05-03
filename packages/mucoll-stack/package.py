@@ -116,6 +116,7 @@ class MucollStack(BundlePackage, Key4hepPackage):
         # (see https://github.com/key4hep/key4hep-spack/issues/170)
         spack_env.set("LC_ALL", "C")
         spack_env.set('MUCOLL_STACK', os.path.join(self.spec.prefix, 'setup.sh'))
+        spack_env.set('MUCOLL_GEO', os.path.join(self.spec['lcgeo'].prefix.share.lcgeo.compact, 'MuColl/MuColl_v1.1/MuColl_v1.xml'))
 
     def install(self, spec, prefix):
         return install_setup_script(self, spec, prefix, 'MUCOLL_LATEST_SETUP_PATH')
