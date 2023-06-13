@@ -18,7 +18,7 @@ class Lcgeo(CMakePackage, MCIlcsoftpackage):
     maintainers = ['gianelle', 'pandreetto']
 
     version('master',  branch='master')
-    version("0.18.01", sha256="5fcfcbd6110792bb607aba82a8dcbf887b40065aa12835f720af700f26c53bcc")
+    version("0.18.1",  sha256="5fcfcbd6110792bb607aba82a8dcbf887b40065aa12835f720af700f26c53bcc")
     version("0.18",    sha256="271062288aac419ce6affc98e199c597c340be57830c30f3b3e1d774cccc608b")
     version('0.17',    sha256='5ab33aaf5bc37deba82c2dde78cdce6c0041257222ed7ea052ecdd388a41cf9b')
     version('0.16.8',  sha256='03417825f5bf242e0cd3ba24f7b4e7c3030126bcbb961f6d2e045e3d9404abfe')
