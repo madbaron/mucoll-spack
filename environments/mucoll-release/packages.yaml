@@ -84,7 +84,7 @@ packages:
   overlay:
     require: '@0.24'
   lcgeo:
-    require: '@0.17'
+    require: '@0.18.1'
   lcio:
     require: '@2.19.1'
   gear:
