@@ -9,7 +9,7 @@ packages:
   whizard:
     variants: ~fastjet~latex+lcio~lhapdf+openloops~openmp+pythia8 hepmc=3
   pythia8:
-    variants: ~hepmc+hepmc3'
+    variants: ~hepmc+hepmc3
   k4simdelphes:
     variants: ~delphes_hepmc
   all:
