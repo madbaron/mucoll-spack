@@ -1,11 +1,17 @@
 # Very loose requirements for nightly builds
 packages:
   geant4:
-    variants: +qt+opengl+vecgeom cxxstd=17
+    variants: ~qt+opengl+vecgeom cxxstd=17
   root:
-    variants: +davix+gsl+math~memstat+minuit+mlp+opengl~postgres~pythia6+pythia8+python~qt4+r+root7+roofit+rpath~shadow+sqlite+ssl~table+tbb+threads+tmva+unuran+vc+vdt+x+xml+xrootd cxxstd=17 build_type=RelWithDebInfo
+    variants: +davix+gsl+math~memstat+minuit+mlp+opengl~postgres~pythia6+pythia8+python~qt4~r+root7+roofit+rpath~shadow+sqlite+ssl~table+tbb+threads+tmva+unuran+vc+vdt+x+xml+xrootd cxxstd=17 build_type=RelWithDebInfo
   dd4hep:
     variants: +lcio+xercesc+hepmc3+edm4hep
+  whizard:
+    variants: ~fastjet~latex+lcio~lhapdf+openloops~openmp+pythia8 hepmc=3
+  pythia8:
+    variants: ~hepmc+hepmc3'
+  k4simdelphes:
+    variants: ~delphes_hepmc
   all:
     target: [x86_64]
     variants: build_type=Release cxxstd=17
