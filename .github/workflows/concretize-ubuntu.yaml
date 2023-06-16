@@ -34,11 +34,12 @@ jobs:
           spack env activate mucoll-spack/environments/mucoll-common/
           spack add mucoll-stack %gcc@11:
           spack concretize
-          spack spec -NT > ${GITHUB_WORKSPACE}/spec-common.log
+          spack spec -Nt > ${GITHUB_WORKSPACE}/spec-common.log
 
       - name: Concretize mucoll-release
         run: |
+          spack env deactivate
           spack env activate mucoll-spack/environments/mucoll-release/
           spack add mucoll-stack %gcc@11:
           spack concretize
-          spack spec -NT > ${GITHUB_WORKSPACE}/spec-release.log
+          spack spec -Nt > ${GITHUB_WORKSPACE}/spec-release.log
