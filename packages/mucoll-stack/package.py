@@ -1,3 +1,4 @@
+from datetime import datetime
 import os
 
 # import common methods for use in recipe from mucoll_utils.py
@@ -21,9 +22,9 @@ class MucollStack(BundlePackage, Key4hepPackage):
     ##################### versions ########################
     #######################################################
     ###  nightly build
-    # to install latest the version of every dependency
+    # to install the latest version of every dependency
     # should use `environments/mucoll-common/packages.yaml`
-    version('master')
+    version(datetime.today().strftime('%Y-%m-%d'))
 
     ### stable build
     # to install exact specified version for every dependecy
