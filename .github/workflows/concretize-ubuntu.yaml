@@ -38,7 +38,7 @@ jobs:
 
       - name: Concretize mucoll-release
         run: |
-          spack env deactivate
+          source spack/share/spack/setup-env.sh
           spack env activate mucoll-spack/environments/mucoll-release/
           spack add mucoll-stack %gcc@11:
           spack concretize
