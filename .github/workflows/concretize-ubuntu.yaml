@@ -8,24 +8,28 @@ jobs:
     strategy:
       fail-fast: false
     steps:
-      - name: Setup Spack
+      - name: Checkout Spack
         uses: actions/checkout@v3
         with:
           repository: spack/spack
           path: spack
-        run: source spack/share/spack/setup-env.sh
 
-      - name: Add Key4hep repo
+      - name: Checkout Key4hep
         uses: actions/checkout@v3
         with:
           repository: key4hep/key4hep-spack
           path: key4hep-spack
-        run: spack repo add key4hep-spack
+
+      - name: Checkout this repo
+        uses: actions/checkout@v3
+        with:
+          path: mucoll-spack
 
       - name: Concretize mucoll-stack
-        uses: actions/checkout@v3
         run: |
+          source spack/share/spack/setup-env.sh
+          spack repo add key4hep-spack
+          spack repo add mucoll-spack
           spack compiler find
-          spack repo add .
-          spack env activate environments/mucoll-common
+          spack env activate mucoll-spack/environments/mucoll-common/
           spack concretize  | tee -a ${GITHUB_WORKSPACE}/key4hep-stack-concretization.log
