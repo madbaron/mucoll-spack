@@ -33,4 +33,5 @@ jobs:
           spack compiler find
           spack env activate mucoll-spack/environments/mucoll-common/
           spack add mucoll-stack %gcc@11:
-          spack concretize  | tee -a ${GITHUB_WORKSPACE}/key4hep-stack-concretization.log
+          spack concretize
+          spack spec -NT > ${GITHUB_WORKSPACE}/key4hep-stack-concretization.log
