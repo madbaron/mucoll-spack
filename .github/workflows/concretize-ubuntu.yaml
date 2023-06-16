@@ -3,7 +3,7 @@ name: concretize-ubuntu
 on: [push, pull_request]
 
 jobs:
-  test:
+  concretize-test:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -32,4 +32,5 @@ jobs:
           spack repo add mucoll-spack
           spack compiler find
           spack env activate mucoll-spack/environments/mucoll-common/
+          spack add mucoll-stack %gcc%11:
           spack concretize  | tee -a ${GITHUB_WORKSPACE}/key4hep-stack-concretization.log
