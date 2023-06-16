@@ -1,0 +1,22 @@
+name: concretize-ubuntu
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+    - uses: actions/checkout@v3
+    - name: Concretize mucoll-stack
+      run: |
+        git clone --depth 1 https://github.com/spack/spack /home/spack
+        source /home/spack/share/spack/setup-env.sh
+        git clone --depth 1 https://github.com/key4hep/key4hep-spack /home/key4hep-spack
+        spack repo add /home/key4hep-spack
+        spack repo add .
+        spack env activate environments/mucoll-common
+        spack compiler find
+        spack add key4hep-stack
+        spack concretize  | tee -a ${GITHUB_WORKSPACE}/key4hep-stack-concretization.log
