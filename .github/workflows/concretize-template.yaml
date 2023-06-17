@@ -10,7 +10,7 @@ jobs:
   concretize:
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: true
+      fail-fast: false
     steps:
       - name: Checkout Spack
         uses: actions/checkout@v3
