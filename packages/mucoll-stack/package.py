@@ -1,3 +1,4 @@
+from datetime import datetime
 import os
 
 # import common methods for use in recipe from mucoll_utils.py
@@ -12,7 +13,7 @@ from spack.pkg.k4.key4hep_stack import Key4hepPackage, install_setup_script
 
 
 class MucollStack(BundlePackage, Key4hepPackage):
-    """Bundle package to install Ilcsoft"""
+    """Bundle package to install Muon Collider Software Stack"""
     
     homepage = 'https://github.com/MuonColliderSoft'
     
@@ -21,9 +22,9 @@ class MucollStack(BundlePackage, Key4hepPackage):
     ##################### versions ########################
     #######################################################
     ###  nightly build
-    # to install latest the version of every dependency
+    # to install the latest version of every dependency
     # should use `environments/mucoll-common/packages.yaml`
-    version('master')
+    version(datetime.today().strftime('%Y-%m-%d'))
 
     ### stable build
     # to install exact specified version for every dependecy
@@ -105,6 +106,26 @@ class MucollStack(BundlePackage, Key4hepPackage):
     with when('+devtools'):
         depends_on('cmake')
         depends_on('ninja')
+        depends_on('doxygen')
+        depends_on('gdb')
+        depends_on('llvm')
+        depends_on('man-db')
+        depends_on('onnx')
+        depends_on('xgboost')
+        # Python tools
+        depends_on('py-h5py', when='+devtools')
+        depends_on('py-ipython', when='+devtools')
+        depends_on('py-jupytext', when='+devtools')
+        depends_on('py-matplotlib', when='+devtools')
+        depends_on('py-onnxruntime', when='+devtools')
+        depends_on('py-onnx', when='+devtools')
+        depends_on('py-pandas', when='+devtools')
+        depends_on('py-particle', when='+devtools')
+        depends_on('py-pip', when='+devtools')
+        depends_on('py-scikit-learn', when='+devtools')
+        depends_on('py-scipy', when='+devtools')
+        depends_on('py-uproot', when='+devtools')
+        depends_on('py-xgboost', when='+devtools')
 
     ##################### conflicts #######################
     #######################################################
@@ -118,6 +139,8 @@ class MucollStack(BundlePackage, Key4hepPackage):
         # (see https://github.com/key4hep/key4hep-spack/issues/170)
         spack_env.set("LC_ALL", "C")
         spack_env.set('MUCOLL_STACK', os.path.join(self.spec.prefix, 'setup.sh'))
+        spack_env.set('MUCOLL_GEO', os.path.join(self.spec['lcgeo'].prefix.share.lcgeo.compact, 'MuColl/MuColl_v1/MuColl_v1.xml'))
+        spack_env.set('MUCOLL_RELEASE_VERSION', self.spec.version)
 
     def install(self, spec, prefix):
         return install_setup_script(self, spec, prefix, 'MUCOLL_LATEST_SETUP_PATH')

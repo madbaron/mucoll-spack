@@ -7,7 +7,7 @@ packages:
   geant4:
     require: '@10.6.3 ~qt+opengl+vecgeom cxxstd=17'
   root:
-    require: '@6.26.6 +davix+gsl+math~memstat+minuit+mlp+opengl~postgres~pythia6+pythia8+python~qt4~r+root7+roofit+rpath~shadow+sqlite+ssl~table+tbb+threads+tmva+unuran+vc+vdt+x+xml+xrootd cxxstd=17 build_type=RelWithDebInfo'
+    require: '@6.26.6 +davix+fftw+gsl+math+minuit+mlp+opengl~postgres~pythia6+pythia8+python+r+root7+roofit+rpath~shadow+sqlite+ssl+tbb+threads+tmva+unuran+vc+vdt+x+xml+xrootd cxxstd=17 build_type=RelWithDebInfo'
   dd4hep:
     require: '@1.23 +lcio+xercesc+hepmc3+edm4hep'
   whizard:
@@ -84,7 +84,7 @@ packages:
   overlay:
     require: '@0.24'
   lcgeo:
-    require: '@0.17'
+    require: '@0.18.1'
   lcio:
     require: '@2.19.1'
   gear:
