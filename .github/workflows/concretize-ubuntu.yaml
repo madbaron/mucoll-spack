@@ -51,4 +51,10 @@ jobs:
           spack env activate mucoll-spack/environments/mucoll-release-debug/
           spack add mucoll-stack %gcc@11:
           spack concretize
-          spack spec -Nt > ${GITHUB_WORKSPACE}/spec-release.log
+          spack spec -Nt > ${GITHUB_WORKSPACE}/spec-release-debug.log
+
+      - name: Produce artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: conretized-specs
+          path: ${GITHUB_WORKSPACE}/spec-*.log
