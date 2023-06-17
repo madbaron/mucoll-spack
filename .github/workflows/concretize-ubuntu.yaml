@@ -28,6 +28,7 @@ jobs:
       - name: Concretize mucoll-common
         run: |
           source spack/share/spack/setup-env.sh
+          spack --version
           spack repo add key4hep-spack
           spack repo add mucoll-spack
           spack compiler find
@@ -40,6 +41,14 @@ jobs:
         run: |
           source spack/share/spack/setup-env.sh
           spack env activate mucoll-spack/environments/mucoll-release/
+          spack add mucoll-stack %gcc@11:
+          spack concretize
+          spack spec -Nt > ${GITHUB_WORKSPACE}/spec-release.log
+
+      - name: Concretize mucoll-release-debug
+        run: |
+          source spack/share/spack/setup-env.sh
+          spack env activate mucoll-spack/environments/mucoll-release-debug/
           spack add mucoll-stack %gcc@11:
           spack concretize
           spack spec -Nt > ${GITHUB_WORKSPACE}/spec-release.log
