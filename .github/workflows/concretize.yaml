@@ -1,0 +1,13 @@
+name: concretize-ubuntu
+
+on: [push, pull_request]
+
+jobs:
+  concretize-all:
+    strategy:
+      matrix:
+        target: [common, release, release-debug]
+    uses: ./.github/workflows/concretize-template.yaml
+    with:
+      target: ${{ matrix.target }}
+
