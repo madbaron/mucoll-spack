@@ -106,6 +106,26 @@ class MucollStack(BundlePackage, Key4hepPackage):
     with when('+devtools'):
         depends_on('cmake')
         depends_on('ninja')
+        depends_on('doxygen')
+        depends_on('gdb')
+        depends_on('llvm')
+        depends_on('man-db')
+        depends_on('onnx')
+        depends_on('xgboost')
+        # Python tools
+        depends_on('py-h5py', when='+devtools')
+        depends_on('py-ipython', when='+devtools')
+        depends_on('py-jupytext', when='+devtools')
+        depends_on('py-matplotlib', when='+devtools')
+        depends_on('py-onnxruntime', when='+devtools')
+        depends_on('py-onnx', when='+devtools')
+        depends_on('py-pandas', when='+devtools')
+        depends_on('py-particle', when='+devtools')
+        depends_on('py-pip', when='+devtools')
+        depends_on('py-scikit-learn', when='+devtools')
+        depends_on('py-scipy', when='+devtools')
+        depends_on('py-uproot', when='+devtools')
+        depends_on('py-xgboost', when='+devtools')
 
     ##################### conflicts #######################
     #######################################################
