@@ -40,3 +40,9 @@ jobs:
           spack add mucoll-stack %gcc@11:
           spack concretize
           spack spec -Nt > ${GITHUB_WORKSPACE}/spec-${{ inputs.target }}.log
+
+      - name: Store artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: spec-list
+          path: ${GITHUB_WORKSPACE}/spec-${{ inputs.target }}.log

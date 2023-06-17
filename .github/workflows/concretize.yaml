@@ -3,7 +3,7 @@ name: concretize-ubuntu
 on: [push, pull_request]
 
 jobs:
-  concretize-all:
+  concretize:
     strategy:
       matrix:
         target: [common, release, release-debug]
