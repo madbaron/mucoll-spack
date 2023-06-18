@@ -31,8 +31,8 @@ class MucollStack(BundlePackage, Key4hepPackage):
     # should use `environments/mucoll-release/packages.yaml`
     version('2.8')
 
-    # this bundle package installs a custom setup script, so
-    # need to add the install phase 
+    # this bundle package installs a custom setup script,
+    # so need to add the install phase
     # (normally doesn't exist for a bundle package)
     phases = ['install']
 
@@ -113,19 +113,19 @@ class MucollStack(BundlePackage, Key4hepPackage):
         depends_on('onnx')
         depends_on('xgboost')
         # Python tools
-        depends_on('py-h5py', when='+devtools')
-        depends_on('py-ipython', when='+devtools')
-        depends_on('py-jupytext', when='+devtools')
-        depends_on('py-matplotlib', when='+devtools')
-        depends_on('py-onnxruntime', when='+devtools')
-        depends_on('py-onnx', when='+devtools')
-        depends_on('py-pandas', when='+devtools')
-        depends_on('py-particle', when='+devtools')
-        depends_on('py-pip', when='+devtools')
-        depends_on('py-scikit-learn', when='+devtools')
-        depends_on('py-scipy', when='+devtools')
-        depends_on('py-uproot', when='+devtools')
-        depends_on('py-xgboost', when='+devtools')
+        depends_on('py-h5py')
+        depends_on('py-ipython')
+        depends_on('py-jupytext')
+        depends_on('py-matplotlib')
+        depends_on('py-onnxruntime')
+        depends_on('py-onnx')
+        depends_on('py-pandas')
+        depends_on('py-particle')
+        depends_on('py-pip')
+        depends_on('py-scikit-learn')
+        depends_on('py-scipy')
+        depends_on('py-uproot')
+        depends_on('py-xgboost')
 
     ##################### conflicts #######################
     #######################################################
