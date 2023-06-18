@@ -104,11 +104,19 @@ packages:
   generalbrokenlines:
     require: '@2.2.1'
 
+  # Loose version requirements
+  gdb:
+    require: '@10:'
+  xrootd:
+    require: '@5:
+
   # Just variants. No specific version requirements
   fftw:
     variants: ~mpi
   mesa:
     variants: ~llvm+glx+opengl swr=none
+  tauola:
+    variants: ~lhapdf
 
   all:
     target: [x86_64]
