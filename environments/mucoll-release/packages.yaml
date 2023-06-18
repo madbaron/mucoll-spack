@@ -108,7 +108,7 @@ packages:
   gdb:
     require: '@10:'
   xrootd:
-    require: '@5:
+    require: '@5:'
 
   # Just variants. No specific version requirements
   fftw:
