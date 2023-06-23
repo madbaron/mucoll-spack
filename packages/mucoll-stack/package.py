@@ -134,13 +134,21 @@ class MucollStack(BundlePackage, Key4hepPackage):
               "which are therefore not supported." \
               "See https://root-forum.cern.ch/t/devtoolset-gcc-toolset-compatibility/38286")
 
-    def setup_run_environment(self, spack_env):
+    def setup_run_environment(self, env):
         # set locale to avoid certain issues with xerces-c
         # (see https://github.com/key4hep/key4hep-spack/issues/170)
-        spack_env.set("LC_ALL", "C")
-        spack_env.set('MUCOLL_STACK', os.path.join(self.spec.prefix, 'setup.sh'))
-        spack_env.set('MUCOLL_GEO', os.path.join(self.spec['lcgeo'].prefix.share.lcgeo.compact, 'MuColl/MuColl_v1/MuColl_v1.xml'))
-        spack_env.set('MUCOLL_RELEASE_VERSION', self.spec.version)
+        env.set("LC_ALL", "C")
+        env.set('MUCOLL_STACK', os.path.join(self.spec.prefix, 'setup.sh'))
+        env.set('MUCOLL_GEO', os.path.join(self.spec['lcgeo'].prefix.share.lcgeo.compact, 'MuColl/MuColl_v1/MuColl_v1.xml'))
+        env.set('MUCOLL_RELEASE_VERSION', self.spec.version)
+
+        # remove when https://github.com/spack/spack/pull/37881 is merged
+        env.prepend_path('LD_LIBRARY_PATH', self.spec['podio'].libs.directories[0])
+        env.prepend_path('LD_LIBRARY_PATH', self.spec['edm4hep'].libs.directories[0])
+        env.prepend_path('LD_LIBRARY_PATH', self.spec['lcio'].libs.directories[0])
+
+        # remove when https://github.com/spack/spack/pull/38015 is merged
+        env.prepend_path('LD_LIBRARY_PATH', self.spec['dd4hep'].libs.directories[0])
 
     def install(self, spec, prefix):
         return install_setup_script(self, spec, prefix, 'MUCOLL_LATEST_SETUP_PATH')
