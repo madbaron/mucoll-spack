@@ -142,6 +142,8 @@ class MucollStack(BundlePackage, Key4hepPackage):
         env.set('MUCOLL_GEO', os.path.join(self.spec['lcgeo'].prefix.share.lcgeo.compact, 'MuColl/MuColl_v1/MuColl_v1.xml'))
         env.set('MUCOLL_RELEASE_VERSION', self.spec.version)
 
+        env.prepend_path('LD_LIBRARY_PATH', self.spec['root'].prefix.lib.root)
+
         # remove when https://github.com/spack/spack/pull/37881 is merged
         env.prepend_path('LD_LIBRARY_PATH', self.spec['podio'].libs.directories[0])
         env.prepend_path('LD_LIBRARY_PATH', self.spec['edm4hep'].libs.directories[0])
