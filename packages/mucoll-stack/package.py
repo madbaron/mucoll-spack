@@ -109,7 +109,6 @@ class MucollStack(BundlePackage, Key4hepPackage):
         depends_on('doxygen')
         depends_on('gdb')
         depends_on('llvm')
-        depends_on('man-db')
         depends_on('onnx')
         depends_on('xgboost')
         # Python tools
