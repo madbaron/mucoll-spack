@@ -77,3 +77,63 @@ spack spec --reuse -NIt
 ```
 
 Packages that are already installed in the `sim` environment are known to Spack and will be reused, providing a clear indication of which part of the dependency tree will be modified by the new release.
+
+## Modifying an existing package
+
+It is possible to modify code of one or more packages using the [development workflow](https://spack-tutorial.readthedocs.io/en/latest/tutorial_developer_workflows.html), which lets Spack build it from your own source folder and use this custom version instead of the one installed in the release.
+
+> NOTE: This should primarily be used for simple code changes in a few packages that do not affect the overall build process and dependency tree of other packages in the release. For more global changes it's better to set up a new release.
+
+Assume that we want to make changes in the `LCIO` package, which many other packages depend on.
+
+To leave the original release untouched it is preferable to create a new Spack environment, e.g. called `dev_lcio`, using the `.lock` file of the original environment as a starting point:
+
+```bash
+# Create a new environment
+spack env create dev_lcio $SPACK_ENV/spack.lock
+
+# Activate the development environment
+spack env activate dev_lcio
+```
+
+The general procedure to replace a package with a custom version is the following:
+1. put your new source code in a development folder of your choice, e.g. `/opt/dev/LCIO`;
+2. find the exact spec of this package in the release and mark it for development in the folder with the new source code;
+3. reconcretize the environment to replace the default version of the package with the development one;
+4. rebuild the modified package using `spack install <package>`;
+5. rebuild the rest of the release, which will reinstall all the packages that depend on the one you've modified.
+
+You can repeat the last 2 steps each time you modify the source code again.
+
+```bash
+# Create the development folder
+mkdir -p /opt/dev/LCIO
+
+# Download the original source code (and modify it)
+git clone https://github.com/MuonColliderSoft/LCIO.git --branch v02-19-01-MC
+
+# Find the exact spec of this package in the current release
+spack find lcio  # lcio@2.19.1
+
+# Mark the package with this spec for development
+spack develop -p /opt/dev/LCIO lcio@2.19.1
+
+# Reconcretize the environment
+spack concretize -f --reuse
+
+# Build the modified package
+spack install lcio
+
+# Build the rest of the release
+spack install
+```
+
+> NOTE: The package spec you mark for development must match exactly the one in the release, even if the actual code comes from a different version of the package. Otherwise you'll have to modify the packages configuration in the relase to properly include the new spec in the dependency tree.
+
+To return to the original version of the release:
+```bash
+# Deactivate the current environment (if on lxplus)
+spack env deactivate
+# Activate the default environment (if in a Docker container)
+spack env activate sim
+```
