@@ -29,7 +29,7 @@ class MucollStack(BundlePackage, Key4hepPackage):
     ### stable build
     # to install exact specified version for every dependecy
     # should use `environments/mucoll-release/packages.yaml`
-    version('2.8')
+    version('2.9')
 
     # this bundle package installs a custom setup script,
     # so need to add the install phase
@@ -46,7 +46,7 @@ class MucollStack(BundlePackage, Key4hepPackage):
     ############################### Key4hep ###############
     #######################################################
     depends_on('whizard +lcio +openloops')
-    depends_on('k4lcioreader')
+    depends_on('k4marlinwrapper')
     depends_on('k4simdelphes')
     depends_on('delphes')
 

@@ -3,10 +3,10 @@
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
-from spack.pkg.k4.key4hep_stack import Ilcsoftpackage
+from spack.pkg.mucoll.mucoll_stack import MCIlcsoftpackage
 
 
-class Muoncvxddigitiser(CMakePackage, Ilcsoftpackage):
+class Muoncvxddigitiser(CMakePackage, MCIlcsoftpackage):
     """Realistic digitiser of pixelated sensors for Muon Collider"""
 
     homepage = "https://github.com/MuonColliderSoft/MuonCVXDDigitiser"
@@ -14,7 +14,8 @@ class Muoncvxddigitiser(CMakePackage, Ilcsoftpackage):
     url      = "https://github.com/MuonColliderSoft/MuonCVXDDigitiser/archive/refs/tags/v00-01.tar.gz"
 
     version("master", branch="master")
-    version("0.1",    sha256="b4fe817025aeda01e0d503a91a5988b4c1d906dfcb02d2a505f013f8de90efc0")
+    version("0.2", sha256="7f3711c028bb646979e4356981da6e97b30da244e71aac0dd4fe206b69820c22", preferred=True)
+    version("0.1", sha256="b4fe817025aeda01e0d503a91a5988b4c1d906dfcb02d2a505f013f8de90efc0")
     
 
     depends_on('ilcutil')

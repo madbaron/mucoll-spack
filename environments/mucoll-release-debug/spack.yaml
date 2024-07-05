@@ -1,6 +1,61 @@
 spack:
-  include:
-  - packages.yaml
   packages:
+    geant4:
+      require: '@11.2.0 +opengl+vecgeom'
+    clhep:
+      require: '@2.4.7.1 ~cms~ipo'
+    root:
+      require: '@6.32.00 +fftw+http+mlp+pythia8+r+root7+sqlite+ssl+tmva+vc+xrootd'
+    dd4hep:
+      require: '@1.29 +hepmc3+lcio+xercesc'
+    edm4hep:
+      require: '@0.10.5 ~ipo'
+    podio:
+      require: '@0.17.3 ~ipo~rntuple~sio'
+    acts:
+      require: '@32.1.0'
+    whizard:
+      require: '@3.1.4 +lcio+openloops+openmp+pythia8'
+    pythia8:
+      require: '@8.311 ~hepmc'
+    k4simdelphes:
+      require: '@00-06-02 ~delphes_hepmc'
+    gaudi:
+      require: '@38.1 +aida+gaudialg'
+
+    overlay:
+      require: '@0.25'
+    lcgeo:
+      require: '@0.20'
+    lcio:
+      require: '@2.22'
+    forwardtracking:
+      require: '@1.14.2'
+    conformaltracking:
+      require: '@1.12.1'
+    marlintrkprocessors:
+      require: '@2.15.1'
+    actstracking:
+      require: '@1.2'
+    muoncvxddigitiser:
+      require: '@0.2'
+
+    gear:
+      require: '@1.9.2'
+    ilcutil:
+      require: '@1.7.2'
+    marlin:
+      require: '@1.19.1'
+    pandorapfa:
+      require: '@4.8.1'
+    gdb:
+      require: '@14.1'
+
     all:
+      target: [x86_64]
       variants: build_type=Debug cxxstd=17
+      buildable: true
+      providers:
+        gl: [mesa]
+        glu: [mesa]
+

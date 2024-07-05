@@ -20,6 +20,7 @@ class Conformaltracking(CMakePackage, MCIlcsoftpackage):
     maintainers = ['gianelle', 'pandreetto']
 
     version('master', branch='master')
+    version('1.12.1', sha256='2fca66be42850afbea910dd8eabc5761d7cb4c517ff7e936503b10bc83218950', preferred=True)
     version('1.12',   sha256='676d20c3f6b6c03910377d0cb241120567cd6c6bd4fbdd0df708965302872e53')
     version('1.11',   sha256='ea5a8e600546f4a67b555c89bb4f60bd95e6fab2259fe72af78ca865cc76819a')
     version('1.10',   sha256='fa3d8c12e92dc0748bb427fe3a388b8d500acb5c0e171736068fffe2135b4b7d')
