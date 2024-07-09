@@ -38,7 +38,7 @@ spack:
     marlintrkprocessors:
       require: '@2.15.1'
     actstracking:
-      require: '@1.2'
+      require: '@1.2.1'
     muoncvxddigitiser:
       require: '@0.2'
 
