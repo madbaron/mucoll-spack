@@ -1,0 +1,11 @@
+git remote add kkrizka https://github.com/kkrizka/spack || true
+git fetch kkrizka -q
+
+# root: fix for +opengl, remove when https://github.com/spack/spack/pull/42844 is merged
+git cherry-pick 466e26e484664d97cd8a904e4b49270679f444af -X theirs --no-commit
+
+# protobuf: updated patch path, remove when https://github.com/spack/spack/pull/44443 is merged
+git cherry-pick 021a6629a98f6e355283761577157f8373434d65 -X theirs --no-commit
+
+# dd4hep: update to version 1.29, remove when https://github.com/spack/spack/pull/44652 is merged
+git cherry-pick 8ddc382de3c23f67f2cf4a281361c03bb12345ef -X theirs --no-commit
