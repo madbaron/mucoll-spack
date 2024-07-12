@@ -23,7 +23,7 @@ spack:
     gaudi:
       require: '@38.1 +aida+gaudialg'
     mucoll-stack:
-      require: '~devtools'
+      require: '@2.9 ~devtools'
 
     overlay:
       require: '@0.25'
@@ -38,7 +38,7 @@ spack:
     marlintrkprocessors:
       require: '@2.15.2'
     actstracking:
-      require: '@1.2.1'
+      require: '@1.2.2'
     muoncvxddigitiser:
       require: '@0.2'
 

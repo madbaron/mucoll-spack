@@ -10,11 +10,8 @@ spack repo add ./key4hep-spack
 spack repo add ./mucoll-spack
 
 # Create a Spack environment
-spack env create sim
+spack env create sim ./mucoll-spack/environments/mucoll-release/spack.yaml
 spack env activate sim
-
-# Copy package configurations
-cp ./mucoll-spack/environments/mucoll-release/*.yaml $SPACK_ENV/
 
 # Install the software stack
 spack add mucoll-stack
@@ -63,11 +60,8 @@ To introduce a new release version for the whole software stack, update the vers
 Test this new configuration in a fresh environment:
 ```bash
 # Create a development environment
-spack env create dev
+spack env create dev ./mucoll-spack/environments/mucoll-release/spack.yaml
 spack env activate dev
-
-# Copy the package configuration
-cp ./mucoll-spack/environments/mucoll-release/*.yaml $SPACK_ENV/
 
 # Add stack with updated version to the environment
 spack add mucoll-stack
