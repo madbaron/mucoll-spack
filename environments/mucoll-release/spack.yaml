@@ -21,7 +21,7 @@ spack:
     k4simdelphes:
       require: '@00-06-02 ~delphes_hepmc'
     gaudi:
-      require: '@38.1 +aida+gaudialg'
+      require: '@38.2 +aida+gaudialg'
     mucoll-stack:
       require: '@2.9 ~devtools'
 
