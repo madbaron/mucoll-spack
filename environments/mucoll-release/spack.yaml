@@ -23,7 +23,7 @@ spack:
     gaudi:
       require: '@38.2 +aida+gaudialg'
     mucoll-stack:
-      require: '@2.9 ~devtools'
+      require: '@2.9 +devtools'
 
     overlay:
       require: '@0.25'
