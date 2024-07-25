@@ -21,9 +21,9 @@ spack:
     k4simdelphes:
       require: '@00-06-02 ~delphes_hepmc'
     gaudi:
-      require: '@38.1 +aida+gaudialg'
+      require: '@38.2 +aida+gaudialg'
     mucoll-stack:
-      require: '~devtools'
+      require: '@2.9 ~devtools'
 
     overlay:
       require: '@0.25'
@@ -36,9 +36,9 @@ spack:
     conformaltracking:
       require: '@1.12.1'
     marlintrkprocessors:
-      require: '@2.15.1'
+      require: '@2.15.2'
     actstracking:
-      require: '@1.2.1'
+      require: '@1.2.2'
     muoncvxddigitiser:
       require: '@0.2'
 
