@@ -5,7 +5,7 @@ spack:
     clhep:
       require: '@2.4.7.1 ~cms~ipo'
     root:
-      require: '@6.32.00 +fftw+http+mlp+pythia8+r+root7+sqlite+ssl+tmva+vc'
+      require: '+fftw+http+mlp+pythia8+r+root7+sqlite+ssl+tmva+vc+xrootd'
     dd4hep:
       require: '@1.29 +hepmc3+lcio+xercesc'
     edm4hep:
