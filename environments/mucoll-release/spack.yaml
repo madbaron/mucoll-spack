@@ -46,8 +46,6 @@ spack:
       require: '@1.7.2'
     marlin:
       require: '@1.19.1'
-    pandorapfa:
-      require: '@4.8.1'
     gdb:
       require: '@14.1'
 
