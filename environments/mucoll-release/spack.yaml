@@ -5,7 +5,7 @@ spack:
     clhep:
       require: '@2.4.7.1 ~cms~ipo'
     root:
-      require: '@6.32.00 +fftw+http+mlp+pythia8+r+root7+sqlite+ssl+tmva+vc'
+      require: '+fftw+http+mlp+pythia8+r+root7+sqlite+ssl+tmva+vc+xrootd'
     dd4hep:
       require: '@1.29 +hepmc3+lcio+xercesc'
     edm4hep:
@@ -14,8 +14,6 @@ spack:
       require: '@0.17.3 ~ipo~rntuple~sio'
     acts:
       require: '@32.1.0'
-    whizard:
-      require: '@3.1.4 +lcio+openloops+openmp+pythia8'
     pythia8:
       require: '@8.311 ~hepmc'
     k4simdelphes:
@@ -23,7 +21,7 @@ spack:
     gaudi:
       require: '@38.2 +aida+gaudialg'
     mucoll-stack:
-      require: '@2.9 ~devtools'
+      require: '@2.9 +devtools'
 
     overlay:
       require: '@0.25'
