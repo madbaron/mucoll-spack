@@ -14,8 +14,6 @@ spack:
       require: '@0.17.3 ~ipo~rntuple~sio'
     acts:
       require: '@32.1.0'
-    whizard:
-      require: '@3.1.4 +lcio+openloops+openmp+pythia8'
     pythia8:
       require: '@8.311 ~hepmc'
     k4simdelphes:
