@@ -8,7 +8,7 @@ ARG REPOSITORY=madbaron
 FROM ${REPOSITORY}/mucoll-spack:${VERSION}-alma9
 
 # Adding Key4hep repo 
-ARG KEY4HEP_COMMIT=9f4187ee47dfa1828be936e34c23035818bcd3aa
+ARG KEY4HEP_COMMIT=61f91b053eac82a2d56cfe3652c64a001a81a781
 
 RUN source /opt/setup_spack.sh && \
     REPOPATH=${SPACK_ROOT}/var/key4hep-spack && \
