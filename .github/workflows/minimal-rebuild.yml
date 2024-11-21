@@ -3,7 +3,7 @@ name: Re-build and publish Minimal
 on:
   push:
     paths:
-        - 'AlmaLinux9/Dockerfile-base'
+        - 'AlmaLinux9/Dockerfile-minimal'
   workflow_dispatch:
 
 env:
