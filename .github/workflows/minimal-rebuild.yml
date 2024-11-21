@@ -3,6 +3,7 @@ name: Re-build and publish Minimal
 on:
   push:
     paths:
+        - '.github/workflows/minimal-rebuild.yml'
         - 'AlmaLinux9/Dockerfile-minimal'
   workflow_dispatch:
 

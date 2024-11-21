@@ -3,6 +3,7 @@ name: Re-build and publish MuColl
 on:
   push:
     paths:
+        - '.github/workflows/mucoll-rebuild.yml'
         - 'AlmaLinux9/Dockerfile-sim'
         - 'environments/**'
         - 'packages/**'

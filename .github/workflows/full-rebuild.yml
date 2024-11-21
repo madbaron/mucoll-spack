@@ -2,6 +2,7 @@ name: Re-build and publish all
 on:
   push:
     paths:
+        - .github/workflows/full-rebuild.yml
         - 'AlmaLinux9/Dockerfile-spack'
   pull_request:
     branches:
