@@ -1,5 +1,4 @@
-name: Re-build and publish everything
-
+name: Re-build and publish all
 on:
   push:
     paths:
