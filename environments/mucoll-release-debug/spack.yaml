@@ -10,8 +10,6 @@ spack:
       require: '@1.29 +hepmc3+lcio+xercesc'
     edm4hep:
       require: '@0.10.5 ~ipo'
-    podio:
-      require: '@0.17.3 ~ipo~rntuple~sio'
     acts:
       require: '@32.1.0'
     whizard:
