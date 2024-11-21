@@ -1,27 +1,16 @@
 spack:
   packages:
-    geant4:
-      require: '@11.2.0 +opengl+vecgeom'
     clhep:
       require: '@2.4.7.1 ~cms~ipo'
-    root:
-      require: '+fftw+http+mlp+pythia8+r+root7+sqlite+ssl+tmva+vc+xrootd'
-    dd4hep:
-      require: '@1.29 +hepmc3+lcio+xercesc'
-    edm4hep:
-      require: '@0.10.5 ~ipo'
-    podio:
-      require: '@0.17.3 ~ipo~rntuple~sio'
     acts:
       require: '@32.1.0'
-    pythia8:
-      require: '@8.311 ~hepmc'
     k4simdelphes:
       require: '@00-06-02 ~delphes_hepmc'
-    gaudi:
-      require: '@38.2 +aida+gaudialg'
     mucoll-stack:
       require: '@2.9 +devtools'
+
+    geant4:
+      require: +opengl+qt~vecgeom cxxstd=20
 
     overlay:
       require: '@0.25'
@@ -40,20 +29,21 @@ spack:
     muoncvxddigitiser:
       require: '@0.2'
 
-    gear:
-      require: '@1.9.2'
     ilcutil:
       require: '@1.7.2'
-    marlin:
-      require: '@1.19.1'
-    gdb:
-      require: '@14.1'
 
     all:
       target: [x86_64]
-      variants: build_type=Release cxxstd=17
+      variants: build_type=RelWithDebInfo cxxstd=20
       buildable: true
       providers:
         gl: [mesa]
         glu: [mesa]
 
+  specs:
+  - mucoll-stack
+  - geant4/p7jlshk
+  - root/voacefc
+
+  concretizer:
+    unify: true
