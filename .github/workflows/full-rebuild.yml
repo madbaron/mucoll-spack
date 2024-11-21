@@ -3,8 +3,6 @@ on:
   push:
     paths:
         - 'AlmaLinux9/Dockerfile-spack'
-    tags:
-      - 'v*'
   pull_request:
     branches:
       - 'master'
