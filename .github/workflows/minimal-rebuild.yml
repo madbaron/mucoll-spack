@@ -123,5 +123,5 @@ jobs:
             VERSION=${{ steps.meta.outputs.version }}
             REPOSITORY=${{ env.REGISTRY }}/${{env.OWNER_LC}}
           tags: ${{ env.REGISTRY }}/${{env.OWNER_LC}}/mucoll-sim:${{steps.meta.outputs.version}}-${{matrix.os.suffix}}
-          env:
-            GIT_HASH: ${{ github.ref }}
+        env:
+          GIT_HASH: ${{ github.ref }}
