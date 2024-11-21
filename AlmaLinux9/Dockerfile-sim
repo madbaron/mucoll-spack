@@ -11,11 +11,9 @@ FROM ${REPOSITORY}/mucoll-minimal:${VERSION}-alma9
 RUN source /opt/setup_spack.sh && \
     REPOPATH=${SPACK_ROOT}/var/mucoll-spack && \
     git clone https://github.com/madbaron/mucoll-spack ${REPOPATH} && \
-    if [ -n "${GIT_HASH}" ]; then \
-      cd ${REPOPATH}; \
-      git checkout ${GIT_HASH}; \
-      cd -; \
-    fi
+    cd ${REPOPATH}; \
+    git checkout ${GIT_HASH}; \
+    cd -;
 
 # Apply our patches to spack
 COPY apply_patches.sh ./apply_patches.sh
