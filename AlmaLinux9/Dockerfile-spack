@@ -5,7 +5,6 @@
 
 ARG VERSION=release
 FROM gitlab-registry.cern.ch/key4hep/k4-deploy/alma9-build
-LABEL org.opencontainers.image.source=https://github.com/madbaron/mucoll-spack
 LABEL org.opencontainers.image.description="Muon collider software stack based on Spack"
 LABEL org.opencontainers.image.licenses=Apache-2.0
 
