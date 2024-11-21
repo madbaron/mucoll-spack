@@ -17,7 +17,7 @@ class MucollStack(BundlePackage, Key4hepPackage):
     
     homepage = 'https://github.com/MuonColliderSoft'
     
-    maintainers = ['bartosik-hep']
+    maintainers = ['bartosik-hep', 'madbaron']
 
     ##################### versions ########################
     #######################################################
@@ -41,7 +41,9 @@ class MucollStack(BundlePackage, Key4hepPackage):
     variant('build_type', default='Release',
             description='CMake build type',
             values=('Debug', 'Release', 'RelWithDebInfo', 'MinSizeRel'))
-
+    variant('llvm', default=False, description='Build with LLVM')
+    variant('ml', default=False, description='Build with machine learning tools')
+    variant('pytools', default=False, description='Build with python tools')
 
     ############################### Key4hep ###############
     #######################################################
@@ -108,9 +110,12 @@ class MucollStack(BundlePackage, Key4hepPackage):
         depends_on('ninja')
         depends_on('doxygen')
         depends_on('gdb')
-        depends_on('llvm')
-        depends_on('onnx')
-        depends_on('xgboost')
+    
+    depends_on('llvm', when='+llvm')
+    depends_on('onnx', when='+ml')
+    depends_on('xgboost', when='+ml')
+
+    with when('+pytools'):
         # Python tools
         depends_on('py-h5py')
         depends_on('py-ipython')

@@ -1,0 +1,33 @@
+###############################################################################
+#  Repository: mucoll-spack
+#  Tag:        ${VERSION}-alma9
+###############################################################################
+
+ARG VERSION=release
+FROM gitlab-registry.cern.ch/key4hep/k4-deploy/alma9-build
+LABEL org.opencontainers.image.source=https://github.com/madbaron/MuonCollider-docker
+LABEL org.opencontainers.image.description="Muon collider software stack based on Spack"
+LABEL org.opencontainers.image.licenses=Apache-2.0
+
+# Add the new Certificate Authority (needed for xrootd)
+RUN wget https://uit.stanford.edu/sites/default/files/2023/10/11/incommon-rsa-ca2.pem -P /usr/share/pki/ca-trust-source/anchors && \
+    /usr/bin/update-ca-trust
+
+# Adding repositories: Spack
+ARG SPACK_COMMIT=6cb16c39ab85fbc211e50be804fa7a15f24ccebc
+
+# Setting up Spack
+RUN git clone https://github.com/spack/spack.git /opt/spack && \
+    echo "source /opt/spack/share/spack/setup-env.sh" >> /opt/setup_spack.sh && \
+    echo "alias setup_spack=\"source /opt/setup_spack.sh\"" >> /etc/profile.d/aliases.sh
+
+# Using specific commit of Key4hep repository if requested
+RUN if [ -n "${SPACK_COMMIT}" ]; then \
+      cd /opt/spack; \
+      git checkout ${SPACK_COMMIT}; \
+    fi
+
+# Registering compilers with Spack
+ENV SPACK_COLOR="always"
+RUN source /opt/setup_spack.sh && \
+    spack compiler find

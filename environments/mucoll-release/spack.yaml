@@ -7,7 +7,7 @@ spack:
     k4simdelphes:
       require: '@00-06-02 ~delphes_hepmc'
     mucoll-stack:
-      require: '@2.9 +devtools'
+      require: '@2.9 +devtools+pytools+ml'
 
     # The version seems to be necessary, otherwise it defaults to an older version
     root:
