@@ -1,4 +1,4 @@
-name: concretize-ubuntu
+name: Concretize-ubuntu
 
 on: [push, pull_request]
 
