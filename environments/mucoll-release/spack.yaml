@@ -36,6 +36,48 @@ spack:
     ilcutil:
       require: '@1.7.2'
 
+    # Use the system OpenGL as recommended by spack
+    # See https://github.com/key4hep/key4hep-spack/issues/318 and
+    # https://github.com/key4hep/key4hep-spack/issues/516
+    # A version is needed and we set it to 99 so that spack thinks it's the latest
+    # (it may not work if the versions in the current system are not what's required
+    # but that hasn't happened yet)
+    opengl:
+      buildable: False
+      externals:
+      - spec: opengl@99
+        prefix: /usr
+    openglu:
+      buildable: False
+      externals:
+      - spec: openglu@99
+        prefix: /usr
+    mesa:
+      buildable: False
+      externals:
+      - spec: mesa@99
+        prefix: /usr
+    mesa-glu:
+      buildable: False
+      externals:
+      - spec: mesa-glu@99
+        prefix: /usr
+    # Use the system kerberos, otherwise the tickets obtained at login with the
+    # system version don't appear for the spack kerberos (happening on lxplus at least)
+    krb5:
+      buildable: False
+      externals:
+      - spec: krb5@99
+        prefix: /usr
+    # Use the system ssh, otherwise the configuration for the provided ssh will likely be
+    # different and things like ssh using kerberos won't work (by extension authentication
+    # for git with ssh with kerberos)
+    openssh:
+      buildable: False
+      externals:
+      - spec: openssh@99
+        prefix: /usr
+
     all:
       target: [x86_64]
       variants: build_type=RelWithDebInfo cxxstd=20
@@ -44,10 +86,8 @@ spack:
         gl: [mesa]
         glu: [mesa]
 
-  specs:
-  - mucoll-stack
-  - geant4/p7jlshk
-  - root/voacefc
-
   concretizer:
     unify: true
+
+  specs:
+  - mucoll-stack
