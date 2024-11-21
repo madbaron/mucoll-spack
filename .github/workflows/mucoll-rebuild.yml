@@ -73,4 +73,4 @@ jobs:
             REPOSITORY=${{ env.REGISTRY }}/${{env.OWNER_LC}}
           tags: ${{ env.REGISTRY }}/${{env.OWNER_LC}}/${{ env.IMAGE_NAME}}:${{steps.meta.outputs.version}}-${{matrix.os.suffix}}
         env:
-          GIT_HASH: ${{ github.ref }}
+          GIT_BRANCH: ${{ steps.meta.outputs.version }}
