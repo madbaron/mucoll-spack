@@ -3,10 +3,12 @@
 #  Tag:        ${VERSION}-alma9
 ###############################################################################
 
-ARG VERSION=release
-FROM gitlab-registry.cern.ch/key4hep/k4-deploy/alma9-build
 LABEL org.opencontainers.image.description="Muon collider software stack based on Spack"
 LABEL org.opencontainers.image.licenses=Apache-2.0
+LABEL org.opencontainers.image.source = "https://github.com/madbaron/mucoll-spack"
+
+ARG VERSION=release
+FROM gitlab-registry.cern.ch/key4hep/k4-deploy/alma9-build
 
 # Add the new Certificate Authority (needed for xrootd)
 RUN wget https://uit.stanford.edu/sites/default/files/2023/10/11/incommon-rsa-ca2.pem -P /usr/share/pki/ca-trust-source/anchors && \
