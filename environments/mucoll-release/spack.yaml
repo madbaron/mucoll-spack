@@ -9,6 +9,9 @@ spack:
     mucoll-stack:
       require: '@2.9 +devtools+pytools+ml'
 
+    py-setuptools:
+      require: "@69"
+
     # The version seems to be necessary, otherwise it defaults to an older version
     root:
       require: '@6.32: +davix+fftw+gsl+math+minuit+mlp+opengl~postgres~pythia8+python+r+roofit+root7+rpath~shadow+spectrum+sqlite+ssl+tbb+threads+tmva+tmva-cpu+unuran+vc+vdt+x+xml+xrootd cxxstd=20'
