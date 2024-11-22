@@ -168,6 +168,5 @@ jobs:
           build-args: |
             VERSION=${{ steps.meta.outputs.version }}
             REPOSITORY=${{ env.REGISTRY }}/${{env.OWNER_LC}}
+            MUCOLL_BRANCH=${{ steps.meta.outputs.version }}
           tags: ${{ env.REGISTRY }}/${{env.OWNER_LC}}/mucoll-sim:${{steps.meta.outputs.version}}-${{matrix.os.suffix}}
-        env:
-          GIT_BRANCH: ${{ steps.meta.outputs.version }}

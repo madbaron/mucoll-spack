@@ -11,10 +11,12 @@ LABEL org.opencontainers.image.description="Muon collider software stack based o
 LABEL org.opencontainers.image.licenses=Apache-2.0
 LABEL org.opencontainers.image.source = "https://github.com/madbaron/mucoll-spack"
 
+ARG MUCOLL_BRANCH=master
+
 # Adding repository: MuColl
 RUN source /opt/setup_spack.sh && \
     REPOPATH=${SPACK_ROOT}/var/mucoll-spack && \
-    git clone -b master --single-branch https://github.com/madbaron/mucoll-spack ${REPOPATH}
+    git clone -b ${MUCOLL_BRANCH} --single-branch https://github.com/madbaron/mucoll-spack ${REPOPATH}
 
 # Apply our patches to spack
 COPY apply_patches.sh ./apply_patches.sh
