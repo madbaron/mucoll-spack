@@ -3,13 +3,13 @@
 #  Tag:        ${VERSION}-alma9
 ###############################################################################
 
-LABEL org.opencontainers.image.description="Muon collider software stack based on Spack"
-LABEL org.opencontainers.image.licenses=Apache-2.0
-LABEL org.opencontainers.image.source = "https://github.com/madbaron/mucoll-spack"
-
 ARG VERSION=master
 ARG REPOSITORY=madbaron
 FROM ${REPOSITORY}/mucoll-minimal:${VERSION}-alma9
+
+LABEL org.opencontainers.image.description="Muon collider software stack based on Spack"
+LABEL org.opencontainers.image.licenses=Apache-2.0
+LABEL org.opencontainers.image.source = "https://github.com/madbaron/mucoll-spack"
 
 # Adding repository: MuColl
 RUN source /opt/setup_spack.sh && \
