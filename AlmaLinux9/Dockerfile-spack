@@ -28,6 +28,10 @@ RUN if [ -n "${SPACK_COMMIT}" ]; then \
       git checkout ${SPACK_COMMIT}; \
     fi
 
+RUN source /opt/setup_spack.sh && \
+    spack install gcc@14.2.0 && \
+    spack clean -a
+
 # Registering compilers with Spack
 ENV SPACK_COLOR="always"
 RUN source /opt/setup_spack.sh && \
