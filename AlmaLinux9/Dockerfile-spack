@@ -4,11 +4,21 @@
 ###############################################################################
 
 ARG VERSION=release
-FROM gitlab-registry.cern.ch/key4hep/k4-deploy/alma9-build
+FROM gitlab-registry.cern.ch/linuxsupport/alma9-base
 
 LABEL org.opencontainers.image.description="Muon collider software stack based on Spack"
 LABEL org.opencontainers.image.licenses=Apache-2.0
 LABEL org.opencontainers.image.source = "https://github.com/madbaron/mucoll-spack"
+
+# epel-release and parallel needed for the validation
+# wget needed for some tests
+RUN dnf update -y && \
+    dnf groupinstall -y "Development Tools" && \
+    dnf install -y vim gfortran wget python3-pip epel-release mesa-libGL mesa-libGL-devel mesa-libGLU mesa-libGLU-devel krb5-devel && \
+    dnf install -y parallel ccache mold && \
+    dnf clean all
+
+RUN pip install boto3 requests
 
 # Add the new Certificate Authority (needed for xrootd)
 RUN wget https://uit.stanford.edu/sites/default/files/2023/10/11/incommon-rsa-ca2.pem -P /usr/share/pki/ca-trust-source/anchors && \
