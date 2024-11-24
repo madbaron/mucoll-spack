@@ -41,7 +41,7 @@ RUN source /opt/setup_spack.sh && \
 
 # Concretizing the MuColl stack reusing system packages as external
 RUN source ${HOME}/setup_env.sh && \
-    spack add mucoll-stack && \
+    #    spack add mucoll-stack && \
     spack concretize --reuse
 
 # Installing fragments of dependency tree in separate layers for cached debugging
