@@ -2,6 +2,7 @@
 #  Repository: ${REPOSITORY}/key4hep-base
 #  Tag:        ${VERSION}-alma9
 ###############################################################################
+
 ARG VERSION=main
 ARG REPOSITORY=madbaron
 FROM ${REPOSITORY}/mucoll-spack:${VERSION}-alma9
