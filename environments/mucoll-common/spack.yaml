@@ -1,3 +1,4 @@
 spack:
   include:
   - packages.yaml
+  - compilers.yaml
