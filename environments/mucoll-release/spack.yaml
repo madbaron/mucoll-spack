@@ -1,4 +1,7 @@
 spack:
+  include:
+  - ../mucoll-common/compilers.yaml
+
   packages:
     clhep:
       require: '@2.4.7.1 ~cms~ipo'
