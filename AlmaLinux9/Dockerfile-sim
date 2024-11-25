@@ -1,18 +1,22 @@
 ###############################################################################
-#  Repository: ${REPOSITORY}/mucoll-sim
+#  Repository: ${IMAGE}/mucoll-sim
 #  Tag:        ${VERSION}-alma9
 ###############################################################################
 
 ARG VERSION=master
-ARG REPOSITORY=madbaron
-FROM ${REPOSITORY}/mucoll-minimal:${VERSION}-alma9
+ARG IMAGE=madbaron
+FROM ${IMAGE}/mucoll-minimal:${VERSION}-alma9
 
-ARG MUCOLL_BRANCH=master
+ARG MUCOLL_SHA=1c4ba29cebeb3e9744626ffc0d04e6ac3f22265e
+ARG REPOSITORY=https://github.com/madbaron/mucoll-spack
 
 # Adding repository: MuColl
 RUN source /opt/setup_spack.sh && \
     REPOPATH=${SPACK_ROOT}/var/mucoll-spack && \
-    git clone -b ${MUCOLL_BRANCH} --single-branch https://github.com/madbaron/mucoll-spack ${REPOPATH}
+    git clone ${REPOSITORY} ${REPOPATH} && \
+    cd ${REPOPATH} && \
+    git checkout ${MUCOLL_SHA} && \
+    cd -
 
 # Apply our patches to spack
 COPY apply_patches.sh ./apply_patches.sh
