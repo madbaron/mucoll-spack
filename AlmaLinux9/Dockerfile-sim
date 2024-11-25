@@ -7,10 +7,6 @@ ARG VERSION=master
 ARG REPOSITORY=madbaron
 FROM ${REPOSITORY}/mucoll-minimal:${VERSION}-alma9
 
-LABEL org.opencontainers.image.description="Muon collider software stack"
-LABEL org.opencontainers.image.licenses=Apache-2.0
-LABEL org.opencontainers.image.source="https://github.com/madbaron/mucoll-spack"
-
 ARG MUCOLL_BRANCH=master
 
 # Adding repository: MuColl

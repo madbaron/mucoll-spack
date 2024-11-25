@@ -6,10 +6,6 @@
 ARG VERSION=release
 FROM gitlab-registry.cern.ch/linuxsupport/alma9-base
 
-LABEL org.opencontainers.image.description="Muon collider software stack based on Spack"
-LABEL org.opencontainers.image.licenses=Apache-2.0
-LABEL org.opencontainers.image.source="https://github.com/madbaron/mucoll-spack"
-
 # epel-release and parallel needed for the validation
 # wget needed for some tests
 RUN dnf update -y && \
