@@ -3,14 +3,11 @@ spack:
   #  - ../mucoll-common/compilers.yaml
 
   packages:
-    clhep:
-      require: '@2.4.7.1 ~cms~ipo'
     acts:
       require: '@32.1.0'
-    k4simdelphes:
-      require: '@00-06-02 ~delphes_hepmc'
+
     mucoll-stack:
-      require: '@2.9 +devtools+pytools+ml'
+      require: '@master +devtools+pytools+ml'
 
     py-setuptools:
       require: "@69"
@@ -38,9 +35,6 @@ spack:
       require: '@1.2.2'
     muoncvxddigitiser:
       require: '@master'
-
-    ilcutil:
-      require: '@1.7.2'
 
     # Use the system OpenGL as recommended by spack
     # See https://github.com/key4hep/key4hep-spack/issues/318 and

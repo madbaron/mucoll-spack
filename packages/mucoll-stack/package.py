@@ -26,6 +26,8 @@ class MucollStack(BundlePackage, Key4hepPackage):
     # should use `environments/mucoll-common/packages.yaml`
     version(datetime.today().strftime('%Y-%m-%d'))
 
+    version("master", branch="master")
+
     ### stable build
     # to install exact specified version for every dependecy
     # should use `environments/mucoll-release/packages.yaml`
