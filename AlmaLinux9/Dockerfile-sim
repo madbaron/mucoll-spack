@@ -13,7 +13,7 @@ ARG REPOSITORY=https://github.com/madbaron/mucoll-spack
 # Adding repository: MuColl
 RUN source /opt/setup_spack.sh && \
     REPOPATH=${SPACK_ROOT}/var/mucoll-spack && \
-    git clone ${REPOSITORY} ${REPOPATH} && \
+    git clone https://github.com/${REPOSITORY} ${REPOPATH} && \
     cd ${REPOPATH} && \
     git checkout ${MUCOLL_SHA} && \
     cd -
