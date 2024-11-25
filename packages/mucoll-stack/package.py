@@ -112,10 +112,15 @@ class MucollStack(BundlePackage, Key4hepPackage):
         depends_on('ninja')
         depends_on('doxygen')
         depends_on('gdb')
-    
+
     depends_on('llvm', when='+llvm')
-    depends_on('onnx', when='+ml')
-    depends_on('xgboost', when='+ml')
+
+    with when('+ml'):
+        # ML tools
+        depends_on('onnx')
+        depends_on('xgboost')
+        depends_on('py-onnxruntime')
+        depends_on('py-onnx')
 
     with when('+pytools'):
         # Python tools
@@ -123,8 +128,6 @@ class MucollStack(BundlePackage, Key4hepPackage):
         depends_on('py-ipython')
         depends_on('py-jupytext')
         depends_on('py-matplotlib')
-        depends_on('py-onnxruntime')
-        depends_on('py-onnx')
         depends_on('py-pandas')
         depends_on('py-particle')
         depends_on('py-pip')
