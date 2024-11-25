@@ -4,6 +4,7 @@ on:
   push:
     paths:
         - '.github/workflows/mucoll-rebuild.yml'
+        - '.cherry-pick'
         - 'AlmaLinux9/Dockerfile-sim'
         - 'environments/**'
         - 'packages/**'
