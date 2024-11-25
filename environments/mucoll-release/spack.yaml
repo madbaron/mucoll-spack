@@ -1,6 +1,6 @@
 spack:
-  include:
-  - ../mucoll-common/compilers.yaml
+  #  include:
+  #  - ../mucoll-common/compilers.yaml
 
   packages:
     clhep:
@@ -42,7 +42,7 @@ spack:
     ilcutil:
       require: '@1.7.2'
     gaudi:
-      require: '@39 +aida+cppunit+examples+gperftools+heppdt+jemalloc+unwind+xercesc'
+      require: '+aida+cppunit+examples+gperftools+heppdt+jemalloc+unwind+xercesc'
     
     # Use the system OpenGL as recommended by spack
     # See https://github.com/key4hep/key4hep-spack/issues/318 and
