@@ -9,7 +9,7 @@ FROM ${REPOSITORY}/mucoll-spack:${VERSION}-alma9
 
 LABEL org.opencontainers.image.description="Muon collider software stack based on Spack"
 LABEL org.opencontainers.image.licenses=Apache-2.0
-LABEL org.opencontainers.image.source = "https://github.com/madbaron/mucoll-spack"
+LABEL org.opencontainers.image.source="https://github.com/madbaron/mucoll-spack"
 
 # Picking specific key4hep commit
 ARG KEY4HEP_COMMIT=475d26f0a62283a29e87b38399b128798d2b81a8

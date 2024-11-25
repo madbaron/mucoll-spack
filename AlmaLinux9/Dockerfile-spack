@@ -8,7 +8,7 @@ FROM gitlab-registry.cern.ch/linuxsupport/alma9-base
 
 LABEL org.opencontainers.image.description="Muon collider software stack based on Spack"
 LABEL org.opencontainers.image.licenses=Apache-2.0
-LABEL org.opencontainers.image.source = "https://github.com/madbaron/mucoll-spack"
+LABEL org.opencontainers.image.source="https://github.com/madbaron/mucoll-spack"
 
 # epel-release and parallel needed for the validation
 # wget needed for some tests
@@ -38,9 +38,9 @@ RUN if [ -n "${SPACK_COMMIT}" ]; then \
       git checkout ${SPACK_COMMIT}; \
     fi
 
-RUN source /opt/setup_spack.sh && \
-    spack install gcc@14.2.0 && \
-    spack clean -a
+#RUN source /opt/setup_spack.sh && \
+#    spack install gcc@14.2.0 && \
+#    spack clean -a
 
 # Registering compilers with Spack
 ENV SPACK_COLOR="always"
