@@ -8,7 +8,7 @@ ARG IMAGE=madbaron
 FROM ${IMAGE}/mucoll-minimal:${VERSION}-alma9
 
 ARG MUCOLL_SHA=1c4ba29cebeb3e9744626ffc0d04e6ac3f22265e
-ARG REPOSITORY=https://github.com/madbaron/mucoll-spack
+ARG REPOSITORY=madbaron/mucoll-spack
 
 # Adding repository: MuColl
 RUN source /opt/setup_spack.sh && \
