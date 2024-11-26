@@ -18,6 +18,8 @@ spack:
 
     geant4:
       require: +opengl+qt~vecgeom cxxstd=20
+    dd4hep:
+      require: +edm4hep+lcio+xercesc+hepmc3
 
     overlay:
       require: '@0.25'
@@ -88,6 +90,8 @@ spack:
 
   concretizer:
     unify: true
+
+  view: false
 
   specs:
   - mucoll-stack
