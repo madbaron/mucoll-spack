@@ -4,10 +4,6 @@ on:
     paths:
         - .github/workflows/full-rebuild.yml
         - 'AlmaLinux9/Dockerfile-spack'
-  pull_request:
-    branches:
-      - 'master'
-      - 'main'
   workflow_dispatch:
 
 env:
