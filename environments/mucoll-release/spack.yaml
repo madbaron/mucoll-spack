@@ -32,7 +32,7 @@ spack:
     conformaltracking:
       require: '@1.12.1'
     marlintrkprocessors:
-      require: '@2.15.2'
+      require: '@master'
     actstracking:
       require: '@1.2.2'
     muoncvxddigitiser:
