@@ -9,9 +9,9 @@ from spack.pkg.mucoll.mucoll_stack import MCIlcsoftpackage
 class Actstracking(CMakePackage, MCIlcsoftpackage):
     """Marlin package for track reconstructions using the ACTS library"""
 
-    homepage = "https://github.com/MuonColliderSoft/ACTSTracking"
-    git      = "https://github.com/MuonColliderSoft/ACTSTracking.git"
-    url      = "https://github.com/MuonColliderSoft/ACTSTracking/archive/refs/tags/v1.1.0.tar.gz"
+    homepage = "https://github.com/madbaron/ACTSTracking"
+    git      = "https://github.com/madbaron/ACTSTracking.git"
+    url      = "https://github.com/madbaron/ACTSTracking/archive/refs/tags/v1.1.0.tar.gz"
 
     maintainers = ['gianelle', 'kkrizka', 'madbaron']
 
