@@ -155,5 +155,11 @@ class MucollStack(BundlePackage, Key4hepPackage):
         env.prepend_path("LD_LIBRARY_PATH", self.spec["root"].prefix.lib)
         env.prepend_path("PYTHONPATH", self.spec["root"].prefix.lib)
 
+        # set vdt, needed for root, see https://github.com/spack/spack/pull/37278
+        if "vdt" in self.spec:
+            env.prepend_path("CPATH", self.spec["vdt"].prefix.include)
+            # When building podio with +rntuple there are warnings constantly without this
+            env.prepend_path("LD_LIBRARY_PATH", self.spec["vdt"].libs.directories[0])
+
     def install(self, spec, prefix):
         return install_setup_script(self, spec, prefix, 'MUCOLL_LATEST_SETUP_PATH')

@@ -22,7 +22,7 @@ spack:
       require: +edm4hep+lcio+xercesc+hepmc3
 
     overlay:
-      require: '@0.25'
+      require: '@0.26'
     lcgeo:
       require: '@0.20'
     lcio:
