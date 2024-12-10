@@ -141,6 +141,12 @@ class MucollStack(BundlePackage, Key4hepPackage):
         env.set('MUCOLL_GEO', os.path.join(self.spec['lcgeo'].prefix.share.lcgeo.compact, 'MuColl/MuColl_v1/MuColl_v1.xml'))
         env.set('MUCOLL_RELEASE_VERSION', self.spec.version)
 
+        # set vdt, needed for root, see https://github.com/spack/spack/pull/37278
+        if "vdt" in self.spec:
+            env.prepend_path("CPATH", self.spec["vdt"].prefix.include)
+            # When building podio with +rntuple there are warnings constantly without this
+            env.prepend_path("LD_LIBRARY_PATH", self.spec["vdt"].libs.directories[0])
+        
         env.prepend_path('LD_LIBRARY_PATH', self.spec['root'].prefix.lib.root)
 
         # remove when https://github.com/spack/spack/pull/37881 is merged
