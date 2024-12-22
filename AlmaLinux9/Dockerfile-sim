@@ -4,16 +4,16 @@
 ###############################################################################
 
 ARG VERSION=master
-ARG IMAGE=madbaron
-FROM ${IMAGE}/mucoll-minimal:${VERSION}-alma9
+ARG REPOSITORY=madbaron
+FROM ${REPOSITORY}/mucoll-minimal:${VERSION}-alma9
 
 ARG MUCOLL_SHA=1c4ba29cebeb3e9744626ffc0d04e6ac3f22265e
-ARG REPOSITORY=madbaron/mucoll-spack
+ARG GITHUB_REPOSITORY=madbaron/mucoll-spack
 
 # Adding repository: MuColl
 RUN source /opt/setup_spack.sh && \
     REPOPATH=${SPACK_ROOT}/var/mucoll-spack && \
-    git clone https://github.com/${REPOSITORY} ${REPOPATH} && \
+    git clone https://github.com/${GITHUB_REPOSITORY} ${REPOPATH} && \
     cd ${REPOPATH} && \
     git checkout ${MUCOLL_SHA} && \
     cd -
@@ -41,7 +41,6 @@ RUN source /opt/setup_spack.sh && \
 
 # Concretizing the MuColl stack reusing system packages as external
 RUN source ${HOME}/setup_env.sh && \
-    #    spack add mucoll-stack && \
     spack concretize --reuse
 
 # Installing fragments of dependency tree in separate layers for cached debugging
