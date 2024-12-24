@@ -121,7 +121,7 @@ jobs:
           file: ./${{matrix.os.dir}}/Dockerfile-sim
           build-args: |
             VERSION=${{ steps.meta.outputs.version }}
-            IMAGE=${{ env.REGISTRY }}/${{env.OWNER_LC}}
-            REPOSITORY=${{ github.repository }}
+            REPOSITORY=${{ env.REGISTRY }}/${{env.OWNER_LC}}
+            GITHUB_REPOSITORY=${{ github.repository }}
             MUCOLL_SHA=${{ github.sha }}
           tags: ${{ env.REGISTRY }}/${{env.OWNER_LC}}/mucoll-sim:${{steps.meta.outputs.version}}-${{matrix.os.suffix}}
