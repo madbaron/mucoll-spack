@@ -4,8 +4,8 @@
 ###############################################################################
 
 ARG VERSION=master
-ARG IMAGE=madbaron
-FROM ${IMAGE}/mucoll-externals:${VERSION}-alma9
+ARG REPOSITORY=madbaron
+FROM ${REPOSITORY}/mucoll-externals:${VERSION}-alma9
 
 ARG MUCOLL_SHA=e49a0639ff987a84fa0c6263e068776f9d7b6f67
 ARG GITHUB_REPOSITORY=kkrizka/mucoll-spack
