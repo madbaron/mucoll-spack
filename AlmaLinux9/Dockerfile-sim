@@ -5,7 +5,7 @@
 
 ARG VERSION=master
 ARG IMAGE=madbaron
-FROM ${IMAGE}/mucoll-minimal:${VERSION}-alma9
+FROM ${IMAGE}/mucoll-externals:${VERSION}-alma9
 
 ARG MUCOLL_SHA=1c4ba29cebeb3e9744626ffc0d04e6ac3f22265e
 ARG REPOSITORY=madbaron/mucoll-spack
