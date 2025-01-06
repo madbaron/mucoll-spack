@@ -29,6 +29,11 @@ jobs:
         with:
           path: mucoll-spack
 
+      - name: Checkout good commits
+        run: |
+          git -C spack checkout 6cb16c39ab85fbc211e50be804fa7a15f24ccebc
+          git -C key4hep-spack checkout 334aa25cf90cbbaf693ac29509d4d7b790effecb
+
       - name: Concretize mucoll-common
         run: |
           source spack/share/spack/setup-env.sh
