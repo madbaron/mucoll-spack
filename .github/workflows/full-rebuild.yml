@@ -1,10 +1,5 @@
 name: Re-build and publish All
-on:
-  push:
-    paths:
-        - .github/workflows/full-rebuild.yml
-        - 'AlmaLinux9/Dockerfile-spack'
-  workflow_dispatch:
+on: [push, workflow_dispatch]
 
 env:
   REGISTRY: ghcr.io
