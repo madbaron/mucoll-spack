@@ -144,5 +144,5 @@ cd AlmaLinux9
 Three images are created in sucession:
 
 - `${REPOSITORY}/mucoll-spack:${VERSION}-alma9`: Base OS with developement tools and any Spack installed under `/opt/spack`.
-- `${REPOSITORY}/mucoll-minimal:${VERSION}-alma9`: Contains an minimal Spack environment.
+- `${REPOSITORY}/mucoll-externals:${VERSION}-alma9`: Contains a minimal Spack environment composed of the external packages needed to build the key4hep or mucoll stacks.
 - `${REPOSITORY}/mucoll-sim:${VERSION}-alma9`: Contains the full Muon Collider Spack environment.
