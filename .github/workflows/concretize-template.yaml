@@ -17,22 +17,19 @@ jobs:
         with:
           repository: spack/spack
           path: spack
+          ref: 6cb16c39ab85fbc211e50be804fa7a15f24ccebc
 
       - name: Checkout Key4hep
         uses: actions/checkout@v4
         with:
           repository: key4hep/key4hep-spack
           path: key4hep-spack
+          ref: 334aa25cf90cbbaf693ac29509d4d7b790effecb
 
       - name: Checkout this repo
         uses: actions/checkout@v4
         with:
           path: mucoll-spack
-
-      - name: Checkout good commits
-        run: |
-          git -C spack checkout 6cb16c39ab85fbc211e50be804fa7a15f24ccebc
-          git -C key4hep-spack checkout 334aa25cf90cbbaf693ac29509d4d7b790effecb
 
       - name: Concretize mucoll-common
         run: |
