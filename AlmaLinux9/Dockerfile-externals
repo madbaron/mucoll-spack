@@ -8,7 +8,7 @@ ARG REPOSITORY=madbaron
 FROM ${REPOSITORY}/mucoll-spack:${VERSION}-alma9
 
 # Picking specific key4hep commit
-ARG KEY4HEP_COMMIT=334aa25cf90cbbaf693ac29509d4d7b790effecb
+ARG KEY4HEP_COMMIT=05c425828d340d0c1263fbc47203e6f88c07735d
 
 RUN source /opt/setup_spack.sh && \
     REPOPATH=${SPACK_ROOT}/var/key4hep-spack && \
