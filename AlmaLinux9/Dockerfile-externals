@@ -8,11 +8,11 @@ ARG REPOSITORY=madbaron
 FROM ${REPOSITORY}/mucoll-spack:${VERSION}-alma9
 
 # Picking specific key4hep commit
-ARG KEY4HEP_COMMIT=05c425828d340d0c1263fbc47203e6f88c07735d
+ARG KEY4HEP_COMMIT=4b46ee141dabde811a047ca635ca73605b704144
 
 RUN source /opt/setup_spack.sh && \
     REPOPATH=${SPACK_ROOT}/var/key4hep-spack && \
-    git clone -b base-environment --single-branch https://github.com/key4hep/key4hep-spack ${REPOPATH} && \
+    git clone -b main --single-branch https://github.com/key4hep/key4hep-spack ${REPOPATH} && \
     if [ -n "${KEY4HEP_COMMIT}" ]; then \
       cd ${REPOPATH}; \
       git checkout ${KEY4HEP_COMMIT}; \
@@ -52,5 +52,5 @@ RUN source ${HOME}/setup_env.sh && \
     spack clean -a
 
 RUN source ${HOME}/setup_env.sh && \
-    echo "source ${SPACK_ENV}/.spack-env/view/setup.sh" > /opt/setup_k4base.sh && \
-    echo "alias setup_k4base=\"source /opt/setup_k4base.sh\"" >> /etc/profile.d/aliases.sh
+    echo "source ${SPACK_ENV}/.spack-env/view/setup.sh" > /opt/setup_k4_externals.sh && \
+    echo "alias setup_k4_externals=\"source /opt/setup_k4_externals.sh\"" >> /etc/profile.d/aliases.sh
