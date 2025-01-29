@@ -13,8 +13,13 @@ class Muoncvxddigitiser(CMakePackage, MCIlcsoftpackage):
     git      = "https://github.com/MuonColliderSoft/MuonCVXDDigitiser.git"
     url      = "https://github.com/MuonColliderSoft/MuonCVXDDigitiser/archive/refs/tags/v0.2.0.tar.gz"
 
+<<<<<<< HEAD
     version("master", branch="master")
     version("0.2.0", sha256="7f3711c028bb646979e4356981da6e97b30da244e71aac0dd4fe206b69820c22", preferred=True)
+=======
+    version("master", branch="master", preferred=True)
+    version("0.2", sha256="7f3711c028bb646979e4356981da6e97b30da244e71aac0dd4fe206b69820c22")
+>>>>>>> 7ca5808 (ROOT not found)
     version("0.1", sha256="b4fe817025aeda01e0d503a91a5988b4c1d906dfcb02d2a505f013f8de90efc0")
     
     depends_on('ilcutil')
