@@ -57,8 +57,6 @@ jobs:
           context: ./${{matrix.os.dir}}
           file: ./${{matrix.os.dir}}/Dockerfile-sim
           build-args: |
-            VERSION=${{ steps.meta.outputs.version }}
-            REPOSITORY=${{ env.REGISTRY }}/${{env.OWNER_LC}}
             GITHUB_REPOSITORY=${{ github.repository }}
             MUCOLL_SHA=${{ github.sha }}
           tags: ${{ steps.meta.outputs.tags }}

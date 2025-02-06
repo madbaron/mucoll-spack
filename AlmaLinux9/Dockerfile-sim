@@ -3,8 +3,6 @@
 #  Tag:        ${VERSION}-alma9
 ###############################################################################
 
-ARG VERSION=master
-ARG REPOSITORY=madbaron
 FROM ghcr.io/key4hep/key4hep-externals:main
 
 ARG MUCOLL_SHA=e49a0639ff987a84fa0c6263e068776f9d7b6f67
