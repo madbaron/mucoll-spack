@@ -1,4 +1,4 @@
-name: Re-build and publish mucoll-sim image
+name: Re-build and publish MuColl
 on: [push, workflow_dispatch]
 
 env:
