@@ -14,7 +14,8 @@ class Muoncvxddigitiser(CMakePackage, MCIlcsoftpackage):
     url      = "https://github.com/MuonColliderSoft/MuonCVXDDigitiser/archive/refs/tags/v0.2.0.tar.gz"
 
     version("master", branch="master")
-    version("0.2.0", sha256="7f3711c028bb646979e4356981da6e97b30da244e71aac0dd4fe206b69820c22", preferred=True)
+    version("0.2.1", sha256="8e57aaa1d7029c61ca5a2d9fb78b7ec3420a899e568c9010e3833c4a15aa1e6d", preferred=True)
+    version("0.2.0", sha256="7f3711c028bb646979e4356981da6e97b30da244e71aac0dd4fe206b69820c22")
     version("0.1", sha256="b4fe817025aeda01e0d503a91a5988b4c1d906dfcb02d2a505f013f8de90efc0")
     
     depends_on('ilcutil')
