@@ -7,7 +7,6 @@
 from spack.package import *
 from spack.pkg.mucoll.mucoll_stack import MCIlcsoftpackage
 
-
 class Lcio(CMakePackage, MCIlcsoftpackage):
     """HEP Library for Linear Collider Input/Output"""
 
