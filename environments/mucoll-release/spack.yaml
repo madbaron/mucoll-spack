@@ -7,19 +7,14 @@ spack:
       require: '@32.1.0'
 
     mucoll-stack:
-      require: '@master: +devtools+pytools+ml'
-
-    py-setuptools:
-      require: "@69"
+      require: '@master: +devtools+pytools+ml~py-jupytext'
 
     # The version seems to be necessary, otherwise it defaults to an older version
     root:
       require: '@6.32: +davix+fftw+gsl+math+minuit+mlp+opengl~postgres~pythia8+python+r+roofit+root7+rpath~shadow+spectrum+sqlite+ssl+tbb+threads+tmva+tmva-cpu+unuran+vc+vdt+x+xml+xrootd cxxstd=20'
 
-    geant4:
-      require: '@11.2.2: +opengl+qt~vecgeom cxxstd=20'
     dd4hep:
-      require: '@1.31: +edm4hep+lcio+xercesc+hepmc3'
+      require: '@1.30: +edm4hep+lcio+xercesc+hepmc3'
 
     overlay:
       require: '@0.25'
