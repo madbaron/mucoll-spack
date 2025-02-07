@@ -1,5 +1,4 @@
 spack:
-  concretization: together
   #  include:
   #  - ../mucoll-common/compilers.yaml
 
