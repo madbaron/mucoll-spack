@@ -50,7 +50,8 @@ RUN source ${HOME}/setup_env.sh && \
     spack clean -a
 
 RUN source ${HOME}/setup_env.sh && \
-    echo "source ${SPACK_ENV}/.spack-env/view/setup.sh" > /opt/setup_mucoll.sh && \
+    MUCOLL_STACK_PATH = $(spack find --format "{prefix}" mucoll-stack) &&\
+    echo "source ${MUCOLL_STACK_PATH}/setup.sh" > /opt/setup_mucoll.sh && \
     echo "alias setup_mucoll=\"source /opt/setup_mucoll.sh\"" >> /etc/profile.d/aliases.sh
 
 # Setting up users to be used for the local environment setup

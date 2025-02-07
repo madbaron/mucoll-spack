@@ -89,5 +89,7 @@ spack:
   concretizer:
     unify: true
 
+  view: false
+
   specs:
   - mucoll-stack
