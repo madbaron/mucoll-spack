@@ -23,8 +23,6 @@ spack:
       require: '@0.25'
     lcgeo:
       require: '@0.20'
-    lcio:
-      require: '@2.22.4'
     forwardtracking:
       require: '@1.14.2'
     conformaltracking:
