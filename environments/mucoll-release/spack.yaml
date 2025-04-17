@@ -22,7 +22,7 @@ spack:
     overlay:
       require: '@0.25'
     lcgeo:
-      require: '@0.20'
+      require: '@0.21'
     k4geo:
       require: '@main'
     forwardtracking:
