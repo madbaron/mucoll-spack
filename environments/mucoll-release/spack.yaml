@@ -23,6 +23,8 @@ spack:
       require: '@0.25'
     lcgeo:
       require: '@0.20'
+    k4geo:
+      require: '@master'
     forwardtracking:
       require: '@1.14.2'
     conformaltracking:
