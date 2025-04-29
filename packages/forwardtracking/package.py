@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 from spack.pkg.mucoll.mucoll_stack import MCIlcsoftpackage
-
+from spack.package import *
 
 class Forwardtracking(CMakePackage, MCIlcsoftpackage):
     """Track Reconstruction for the Forward Direction (for the FTD)"""
@@ -16,6 +16,7 @@ class Forwardtracking(CMakePackage, MCIlcsoftpackage):
     maintainers = ['gianelle', 'pandreetto']
 
     version('master', branch='master')
+    version('1.14.2', sha256='e07cf6e71e2198253c53a1ea017d827d432de7c541c84642c89edf99184785b4', preferred=True)
     version('1.14',   sha256='00e4fd4fc4be2c0c6febf6927fd5b37856ecb80a82d62836086ce4b53c1fb107')
 
     patch('testing.patch', when="@:1.15")

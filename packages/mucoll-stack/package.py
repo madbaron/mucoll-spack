@@ -9,6 +9,7 @@ import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from mucoll_utils import *
 
+from spack.package import *
 from spack.pkg.k4.key4hep_stack import Key4hepPackage, install_setup_script
 
 
@@ -17,7 +18,7 @@ class MucollStack(BundlePackage, Key4hepPackage):
     
     homepage = 'https://github.com/MuonColliderSoft'
     
-    maintainers = ['bartosik-hep']
+    maintainers = ['bartosik-hep', 'madbaron']
 
     ##################### versions ########################
     #######################################################
@@ -26,10 +27,12 @@ class MucollStack(BundlePackage, Key4hepPackage):
     # should use `environments/mucoll-common/packages.yaml`
     version(datetime.today().strftime('%Y-%m-%d'))
 
+    version("master", branch="master")
+
     ### stable build
     # to install exact specified version for every dependecy
     # should use `environments/mucoll-release/packages.yaml`
-    version('2.8')
+    version('2.9')
 
     # this bundle package installs a custom setup script,
     # so need to add the install phase
@@ -41,15 +44,17 @@ class MucollStack(BundlePackage, Key4hepPackage):
     variant('build_type', default='Release',
             description='CMake build type',
             values=('Debug', 'Release', 'RelWithDebInfo', 'MinSizeRel'))
-
+    variant('llvm', default=False, description='Build with LLVM')
+    variant('ml', default=False, description='Build with machine learning tools')
+    variant('pytools', default=False, description='Build with python tools')
 
     ############################### Key4hep ###############
     #######################################################
     depends_on('whizard +lcio +openloops')
-    depends_on('k4lcioreader')
+    depends_on('k4marlinwrapper')
     depends_on('k4simdelphes')
+    depends_on('k4simgeant4')
     depends_on('delphes')
-
 
     ############################### ILCSoft ###############
     #######################################################
@@ -108,17 +113,22 @@ class MucollStack(BundlePackage, Key4hepPackage):
         depends_on('ninja')
         depends_on('doxygen')
         depends_on('gdb')
-        depends_on('llvm')
-        depends_on('man-db')
+
+    depends_on('llvm', when='+llvm')
+
+    with when('+ml'):
+        # ML tools
         depends_on('onnx')
         depends_on('xgboost')
+        depends_on('py-onnxruntime')
+        depends_on('py-onnx')
+
+    with when('+pytools'):
         # Python tools
         depends_on('py-h5py')
         depends_on('py-ipython')
-        depends_on('py-jupytext')
+        # depends_on('py-jupytext') # this requires rust and node-js which take too long to compile
         depends_on('py-matplotlib')
-        depends_on('py-onnxruntime')
-        depends_on('py-onnx')
         depends_on('py-pandas')
         depends_on('py-particle')
         depends_on('py-pip')
@@ -142,7 +152,15 @@ class MucollStack(BundlePackage, Key4hepPackage):
         env.set('MUCOLL_GEO', os.path.join(self.spec['lcgeo'].prefix.share.lcgeo.compact, 'MuColl/MuColl_v1/MuColl_v1.xml'))
         env.set('MUCOLL_RELEASE_VERSION', self.spec.version)
 
-        env.prepend_path('LD_LIBRARY_PATH', self.spec['root'].prefix.lib.root)
+        # ROOT needs to be in LD_LIBRARY_PATH to prevent using system installations
+        env.prepend_path("LD_LIBRARY_PATH", self.spec["root"].prefix.lib)
+        env.prepend_path("PYTHONPATH", self.spec["root"].prefix.lib)
+
+        # set vdt, needed for root, see https://github.com/spack/spack/pull/37278
+        if "vdt" in self.spec:
+            env.prepend_path("CPATH", self.spec["vdt"].prefix.include)
+            # When building podio with +rntuple there are warnings constantly without this
+            env.prepend_path("LD_LIBRARY_PATH", self.spec["vdt"].libs.directories[0])
 
         # remove when https://github.com/spack/spack/pull/37881 is merged
         env.prepend_path('LD_LIBRARY_PATH', self.spec['podio'].libs.directories[0])

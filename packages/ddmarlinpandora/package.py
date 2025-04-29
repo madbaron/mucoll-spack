@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 from spack.pkg.mucoll.mucoll_stack import MCIlcsoftpackage
-
+from spack.package import *
 
 class Ddmarlinpandora(CMakePackage, MCIlcsoftpackage):
     """Interface between Marlin and PandoraPFA."""
@@ -29,6 +29,9 @@ class Ddmarlinpandora(CMakePackage, MCIlcsoftpackage):
     depends_on("larcontent")
     depends_on('dd4hep')
     depends_on('marlintrk')
+    depends_on("pandoramonitoring", when="+monitoring")
+
+    variant("monitoring", default=False, description="Enable Pandora Monitoring")
 
     def setup_run_environment(self, spack_env):
         spack_env.prepend_path('MARLIN_DLL', self.prefix.lib + "/libDDMarlinPandora.so")
@@ -36,5 +39,6 @@ class Ddmarlinpandora(CMakePackage, MCIlcsoftpackage):
     def cmake_args(self):
         # C++ Standard
         return [
-            '-DCMAKE_CXX_STANDARD=%s' % self.spec['root'].variants['cxxstd'].value
+            '-DCMAKE_CXX_STANDARD=%s' % self.spec['root'].variants['cxxstd'].value,
+            self.define_from_variant("PANDORA_MONITORING", "monitoring"),
         ]

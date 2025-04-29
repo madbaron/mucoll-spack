@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 from spack.pkg.mucoll.mucoll_stack import MCIlcsoftpackage
-
+from spack.package import *
 
 class Lcgeo(CMakePackage, MCIlcsoftpackage):
     """DD4hep geometry models for future colliders."""
@@ -18,6 +18,8 @@ class Lcgeo(CMakePackage, MCIlcsoftpackage):
     maintainers = ['gianelle', 'pandreetto']
 
     version('master',  branch='master')
+    version('0.21',    sha256='72fe0c480321ebbfbe7300da02d970ab3357f00c7ac0035eb8dec3db4271ead5', preferred=True)
+    version('0.20',    sha256='7afdb3ad06b577481ca17003981b2dc8182d5c49ac032a3ee20ae545d97695e1')
     version("0.18.1",  sha256="5fcfcbd6110792bb607aba82a8dcbf887b40065aa12835f720af700f26c53bcc")
     version("0.18",    sha256="271062288aac419ce6affc98e199c597c340be57830c30f3b3e1d774cccc608b")
     version('0.17',    sha256='5ab33aaf5bc37deba82c2dde78cdce6c0041257222ed7ea052ecdd388a41cf9b')
@@ -59,7 +61,7 @@ class Lcgeo(CMakePackage, MCIlcsoftpackage):
     def setup_run_environment(self, env):
         env.set('LCGEO', self.prefix.share.lcgeo.compact)
         env.set('lcgeo_DIR', self.prefix.share.lcgeo.compact)
-        env.prepend_path("LD_LIBRARY_PATH", self.spec['lcgeo'].libs.directories[0])
+        env.prepend_path("LD_LIBRARY_PATH", self.spec['lcgeo'].prefix.lib)
 
     def setup_build_environment(self, env):
         env.set('LCGEO', self.prefix.share.lcgeo.compact)
@@ -70,7 +72,7 @@ class Lcgeo(CMakePackage, MCIlcsoftpackage):
     def setup_dependent_build_environment(self, env, dependent_spec):
         env.set('LCGEO', self.prefix.share.lcgeo.compact)
         env.set('lcgeo_DIR', self.prefix.share.lcgeo.compact)
-        env.prepend_path("LD_LIBRARY_PATH", self.spec['lcgeo'].libs.directories[0])
+        env.prepend_path("LD_LIBRARY_PATH", self.spec['lcgeo'].prefix.lib)
         env.prepend_path("LD_LIBRARY_PATH", self.spec['lcio'].libs.directories[0])
 
     # dd4hep tests need to run after install step:
