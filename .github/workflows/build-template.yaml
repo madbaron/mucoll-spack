@@ -1,0 +1,61 @@
+name: Build with spack cache
+description: |
+  Build mucoll stack with spack cache.
+  This workflow is triggered by the mucoll-spack repository.
+  It builds the stack and pushes the binaries to the cache.
+
+on:
+  workflow_call:
+    inputs:
+      os:
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  packages: write
+  id-token: write
+  attestations: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: ghcr.io/key4hep/key4hep-externals-${{inputs.os}}:main
+    steps:
+      - name: Checkout mucoll repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.sha }}
+          path: mucoll-spack
+      #- name: Set up Spack
+      #  uses: spack/setup-spack@v2
+      #  with:
+      #    ref: ${{ steps.getref.outputs.spack_ref }} # Spack version (examples: develop, releases/v0.23)
+      #    color: true                                # Force color output (SPACK_COLOR=always)
+      #    path: spack                                # Where to clone Spack
+      #    buildcache: false                          # No central build cache (incompatible)
+      - name: Spack Setup Build Cache
+        shell: spack-bash {0}
+        run: |
+          source /opt/setup_spack.sh
+          spack config add 'config:install_tree:padded_length:128'
+          spack mirror add --oci-username '${{ github.actor }}' --oci-password '${{ secrets.GITHUB_TOKEN }}' --unsigned --autopush local-buildcache 'oci://ghcr.io/${{ github.repository_owner }}/mucoll-buildcache'
+      - name: Apply Patches
+        shell: spack-bash {0}
+        run: |
+          whereami=$(pwd)
+          cd /opt/spack 
+          . ${whereami}/mucoll-spack/.cherry-pick
+          cd -
+      - name: Spack Repo Setup
+        shell: spack-bash {0}
+        run: |
+          spack repo add mucoll-spack
+      - name: Spack Build mucoll-release
+        shell: spack-bash {0}
+        run: |
+          spack env activate mucoll-spackenvironments/mucoll-release
+          spack concretize --reuse
+          spack install --only-concrete --no-add --fail-fast
+          spack clean -a
