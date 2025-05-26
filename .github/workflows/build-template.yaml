@@ -28,25 +28,27 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.sha }}
           path: mucoll-spack
-      - name: Set up Spack
-        uses: spack/setup-spack@v2
-        with:
-          ref: ${{ steps.getref.outputs.spack_ref }} # Spack version (examples: develop, releases/v0.23)
-          color: true                                # Force color output (SPACK_COLOR=always)
-          path: spack                                # Where to clone Spack
-          buildcache: false                          # No central build cache (incompatible)
+      #- name: Set up Spack
+      #  uses: spack/setup-spack@v2
+      #  with:
+      #    ref: ${{ steps.getref.outputs.spack_ref }} # Spack version (examples: develop, releases/v0.23)
+      #    color: true                                # Force color output (SPACK_COLOR=always)
+      #    path: spack                                # Where to clone Spack
+      #    buildcache: false                          # No central build cache (incompatible)
       - name: Spack Setup Build Cache
         shell: spack-bash {0}
         run: |
-          git -C spack fetch # Needed to fetch the full history for backporting patches
+          #git -C spack fetch # Needed to fetch the full history for backporting patches
+          . /opt/setup_spack.sh
           spack config add 'config:install_tree:padded_length:128'
           spack mirror add --oci-username '${{ github.actor }}' --oci-password '${{ secrets.GITHUB_TOKEN }}' --unsigned --autopush local-buildcache 'oci://ghcr.io/${{ github.repository_owner }}/mucoll-buildcache'
       - name: Apply Patches
         shell: spack-bash {0}
         run: |
-          cd spack 
-          . ../mucoll-spack/.cherry-pick
-          cd ..
+          whereami=$(pwd)
+          cd /opt/spack 
+          . ${whereami}/mucoll-spack/.cherry-pick
+          cd -
       - name: Spack Repo Setup
         shell: spack-bash {0}
         run: |
