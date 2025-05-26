@@ -50,6 +50,8 @@ jobs:
       - name: Spack Repo Setup
         shell: spack-bash {0}
         run: |
+          spack --version
+          spack repo add /opt/spack/var/key4hep-spack
           spack repo add mucoll-spack
           spack compiler find
       - name: Spack Build mucoll-release
