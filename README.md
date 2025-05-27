@@ -1,22 +1,22 @@
 # [Spack](https://github.com/spack/spack) package repository for Muon Collider software stack
 
-This repository holds a set of Spack recipes for Muon Collider software (under namespace `mucoll`) based on [Key4hep](https://key4hep.github.io/key4hep-doc/) stack. It extends the corresponding [key4hep-stack](https://github.com/key4hep/key4hep-spack) repository, which is required for installation, overriding several packages by the ones customised for Muon Collider simulation studies.
+This repository holds a set of Spack recipes for Muon Collider software (under namespace `mucoll`) based on [Key4hep](https://key4hep.github.io/key4hep-doc/) stack. It is built on top of the key4hep-dev-external environment from the [key4hep-stack](https://github.com/key4hep/key4hep-spack) repository, which is required for installation.
 
 After installing [Spack](https://github.com/key4hep/spack) and downloading the [key4hep-spack](https://github.com/key4hep/key4hep-spack) and [mucoll-spack](https://github.com/MuonColliderSoft/mucoll-spack) repositories, the whole software stack can be installed using the following commands:
 
 ```bash
-# Add repositories
+# Setup spack and install key4hep-externals
 spack repo add ./key4hep-spack
-spack repo add ./mucoll-spack
-
-# Create a Spack environment
-spack env create sim ./mucoll-spack/environments/mucoll-release/spack.yaml
-spack env activate sim
-
-# Install the software stack
-spack add mucoll-stack
+spack env activate ./key4hep-spack/environments/key4hep-dev-external
 spack concretize --reuse
-spack install --fail-fast
+spack install --only-concrete --no-add --fail-fast
+spack env deactivate
+
+# Now move on to mucoll
+spack repo add ./mucoll-spack
+spack env activate ./mucoll-spack/environments/mucoll-release
+spack concretize --reuse
+spack install --only-concrete --no-add --fail-fast
 
 # Load the Muon Collider environment
 source $MUCOLL_STACK
@@ -27,7 +27,7 @@ source $MUCOLL_STACK
 When signing in to a machine with the installed sofware stack (VM or Docker container), it has to be loaded into the environment:
 
 ```bash
-spack env activate sim
+spack env activate ./mucoll-spack/environments/mucoll-release
 source $MUCOLL_STACK
 ```
 
@@ -141,8 +141,5 @@ cd AlmaLinux9
 ./build.sh REPOSITORY VERSION
 ```
 
-Three images are created in sucession:
-
-- `${REPOSITORY}/mucoll-spack:${VERSION}-alma9`: Base OS with developement tools and any Spack installed under `/opt/spack`.
-- `${REPOSITORY}/mucoll-externals:${VERSION}-alma9`: Contains a minimal Spack environment composed of the external packages needed to build the key4hep or mucoll stacks.
+The stack image will be created:
 - `${REPOSITORY}/mucoll-sim:${VERSION}-alma9`: Contains the full Muon Collider Spack environment.
