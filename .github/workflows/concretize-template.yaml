@@ -6,43 +6,39 @@ on:
       target:
         required: true
         type: string
+      os:
+        required: true
+        type: string
+
 jobs:
   concretize:
     runs-on: ubuntu-latest
+    container: ghcr.io/key4hep/key4hep-externals-${{inputs.os}}:main
     strategy:
       fail-fast: false
     steps:
-      - name: Checkout Spack
+      - name: Checkout Mucoll Spack
         uses: actions/checkout@v4
         with:
-          repository: spack/spack
-          path: spack
-          ref: 6cb16c39ab85fbc211e50be804fa7a15f24ccebc
-
-      - name: Checkout Key4hep
-        uses: actions/checkout@v4
-        with:
-          repository: key4hep/key4hep-spack
-          path: key4hep-spack
-          ref: 334aa25cf90cbbaf693ac29509d4d7b790effecb
-
-      - name: Checkout this repo
-        uses: actions/checkout@v4
-        with:
+          fetch-depth: 0
           path: mucoll-spack
-
-      - name: Concretize mucoll-common
+          ref:  ${{ github.sha }}
+      - name: Apply Patches
+        shell: spack-bash {0}
         run: |
-          source spack/share/spack/setup-env.sh
+          whereami=$(pwd)
+          cd /opt/spack 
+          . ${whereami}/mucoll-spack/.cherry-pick
+          cd -
+      - name: Load env and concretize
+        shell: spack-bash {0}
+        run: |
+          . /opt/setup_spack.sh
           spack --version
-          spack repo add key4hep-spack
           spack repo add mucoll-spack
-          spack compiler find
           spack env activate mucoll-spack/environments/mucoll-${{ inputs.target }}
-          spack add mucoll-stack %gcc@11:
-          spack concretize
+          spack concretize --reuse
           spack spec -Nt > ${GITHUB_WORKSPACE}/spec-${{ inputs.target }}.log
-
       - name: Store artifacts
         uses: actions/upload-artifact@v4
         with:
