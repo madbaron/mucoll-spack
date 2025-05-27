@@ -66,7 +66,6 @@ jobs:
             SPACK_BUILDCACHE=oci://ghcr.io/${{ github.repository_owner }}/mucoll-buildcache
             OCI_USERNAME=${{ github.actor }}
           secrets: |
-            "ocipass=cippa"
-          # "OCI_PASSWORD=${{ secrets.GITHUB_TOKEN }}"
+            "ocipass=${{ secrets.GITHUB_TOKEN }}"
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
