@@ -45,9 +45,6 @@ jobs:
           spack --version
           spack repo add mucoll-spack
           spack env activate mucoll-spack/environments/mucoll-release
-      - name: Spack concretize
-        run: |
-          . /opt/setup_spack.sh
           spack concretize --reuse      
       #- name: Spack Build mucoll-release
       #  run: |
