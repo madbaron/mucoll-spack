@@ -27,7 +27,8 @@ RUN . /opt/setup_spack.sh && \
 # Add the package repositories
 ARG SPACK_BUILDCACHE
 ARG OCI_USERNAME
-RUN OCI_PASSWORD=$(cat /run/secrets/ocipass) && \
+RUN --mount=type=secret,id=ocipass \
+    OCI_PASSWORD=$(cat /run/secrets/ocipass) && \
     . /opt/setup_spack.sh && \
     spack repo add --scope system ${SPACK_ROOT}/var/mucoll-spack && \
     if [ -n "${SPACK_BUILDCACHE}" ]; then \
