@@ -28,13 +28,6 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.sha }}
           path: mucoll-spack
-      #- name: Set up Spack
-      #  uses: spack/setup-spack@v2
-      #  with:
-      #    ref: ${{ steps.getref.outputs.spack_ref }} # Spack version (examples: develop, releases/v0.23)
-      #    color: true                                # Force color output (SPACK_COLOR=always)
-      #    path: spack                                # Where to clone Spack
-      #    buildcache: false                          # No central build cache (incompatible)
       - name: Spack Setup Build Cache
         run: |
           . /opt/setup_spack.sh
@@ -50,6 +43,7 @@ jobs:
         run: |
           . /opt/setup_spack.sh
           spack --version
+          spack repo add /opt/spack/var/key4hep-spack
           spack repo add mucoll-spack
           spack compiler find
       - name: Spack Build mucoll-release
