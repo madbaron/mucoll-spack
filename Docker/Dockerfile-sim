@@ -27,11 +27,10 @@ RUN . /opt/setup_spack.sh && \
 # Add the package repositories
 ARG SPACK_BUILDCACHE
 ARG OCI_USERNAME
-ARG OCI_PASSWORD
 RUN . /opt/setup_spack.sh && \
     spack repo add --scope system ${SPACK_ROOT}/var/mucoll-spack && \
     if [ -n "${SPACK_BUILDCACHE}" ]; then \
-        spack mirror add --oci-username "${OCI_USERNAME}" --oci-password "${OCI_PASSWORD}" --unsigned --autopush local-buildcache "${SPACK_BUILDCACHE}";\
+        spack mirror add --oci-username "${OCI_USERNAME}" --oci-password $(cat OCI_PASSWORD) --unsigned --autopush local-buildcache "${SPACK_BUILDCACHE}";\
     fi
 
 # Create the release environment
