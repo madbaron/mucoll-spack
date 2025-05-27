@@ -31,11 +31,8 @@ jobs:
       - name: Spack Setup Build Cache
         run: |
           . /opt/setup_spack.sh
-          spack find -lv
-          spack config blame config
-          echo spack config add 'config:install_tree:padded_length:128'
+          spack config add 'config:install_tree:padded_length:128'
           spack mirror add --oci-username '${{ github.actor }}' --oci-password '${{ secrets.GITHUB_TOKEN }}' --unsigned --autopush local-buildcache 'oci://ghcr.io/${{ github.repository_owner }}/mucoll-buildcache'
-          spack config blame config
       - name: Apply Patches
         run: |
           whereami=$(pwd)
@@ -45,6 +42,7 @@ jobs:
       - name: Spack Repo Setup
         run: |
           . /opt/setup_spack.sh
+          spack config blame config
           spack --version
           spack find -lv
           spack repo add mucoll-spack
