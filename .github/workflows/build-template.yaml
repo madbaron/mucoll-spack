@@ -48,6 +48,7 @@ jobs:
           spack compiler find
       - name: Spack concretize
         run: |
+          . /opt/setup_spack.sh
           spack env activate mucoll-spack/environments/mucoll-release
           spack concretize --reuse      
       #- name: Spack Build mucoll-release
