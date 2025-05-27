@@ -57,9 +57,10 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          context: ./Docker/${{inputs.os}}
-          file: ./Docker/${{inputs.os}}/Dockerfile-sim
+          context: ./Docker
+          file: ./Docker/Dockerfile-sim
           build-args: |
+            OS=${{ inputs.os }}
             GITHUB_REPOSITORY=${{ github.repository }}
             MUCOLL_SHA=${{ github.sha }}
             SPACK_BUILDCACHE=oci://ghcr.io/${{ github.repository_owner }}/mucoll-buildcache
