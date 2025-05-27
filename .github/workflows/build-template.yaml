@@ -43,13 +43,11 @@ jobs:
         run: |
           . /opt/setup_spack.sh
           spack --version
-          spack repo add /opt/spack/var/key4hep-spack
           spack repo add mucoll-spack
-          spack compiler find
+          spack env activate mucoll-spack/environments/mucoll-release
       - name: Spack concretize
         run: |
           . /opt/setup_spack.sh
-          spack env activate mucoll-spack/environments/mucoll-release
           spack concretize --reuse      
       #- name: Spack Build mucoll-release
       #  run: |
