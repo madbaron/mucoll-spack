@@ -16,7 +16,7 @@ jobs:
       fail-fast: false
       matrix:
         #os: [alma9, ubuntu24]
-        os: [ubuntu24]
+        os: [alma9]
     with:
       os: ${{ matrix.os }}
   build-image:
@@ -26,6 +26,6 @@ jobs:
       fail-fast: false
       matrix:
         #os: [alma9, ubuntu24]
-        os: [ubuntu24]
+        os: [alma9]
     with:
       os: ${{ matrix.os }}

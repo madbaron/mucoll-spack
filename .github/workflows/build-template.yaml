@@ -31,7 +31,6 @@ jobs:
       - name: Spack Setup Build Cache
         run: |
           . /opt/setup_spack.sh
-          spack config add 'config:install_tree:padded_length:128'
           spack mirror add --oci-username '${{ github.actor }}' --oci-password '${{ secrets.GITHUB_TOKEN }}' --unsigned --autopush local-buildcache 'oci://ghcr.io/${{ github.repository_owner }}/mucoll-buildcache'
       - name: Apply Patches
         run: |
@@ -39,22 +38,15 @@ jobs:
           cd /opt/spack 
           . ${whereami}/mucoll-spack/.cherry-pick
           cd -
-      - name: Spack Repo Setup
+      - name: Spack Concretize and install
         run: |
           . /opt/setup_spack.sh
-          spack config blame config
           spack --version
-          spack find -lv
           spack repo add mucoll-spack
           spack env activate mucoll-spack/environments/mucoll-release
           spack concretize --reuse      
-      #- name: Spack Build mucoll-release
-      #  run: |
-      #    . /opt/setup_spack.sh
-      #    spack env activate mucoll-spack/environments/mucoll-release
-      #    spack concretize --reuse
-      #    spack install --only-concrete --no-add --fail-fast
-      #    spack clean -a
+          spack install --only-concrete --no-add --fail-fast
+          spack clean -a
       - name: Store artifacts
         uses: actions/upload-artifact@v4
         with:
