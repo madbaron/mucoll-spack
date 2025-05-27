@@ -33,7 +33,7 @@ jobs:
           . /opt/setup_spack.sh
           spack find -lv
           spack config blame config
-          spack config add 'config:install_tree:padded_length:128'
+      #spack config add 'config:install_tree:padded_length:128'
           spack mirror add --oci-username '${{ github.actor }}' --oci-password '${{ secrets.GITHUB_TOKEN }}' --unsigned --autopush local-buildcache 'oci://ghcr.io/${{ github.repository_owner }}/mucoll-buildcache'
           spack config blame config
       - name: Apply Patches
@@ -57,3 +57,8 @@ jobs:
       #    spack concretize --reuse
       #    spack install --only-concrete --no-add --fail-fast
       #    spack clean -a
+      - name: Store artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: spack.lock
+          path: /opt/spack/environments/mucoll-spack/environments/mucoll-release/spack.lock
