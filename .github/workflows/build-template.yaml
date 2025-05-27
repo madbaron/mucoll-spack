@@ -33,7 +33,7 @@ jobs:
           . /opt/setup_spack.sh
           spack find -lv
           spack config blame config
-      #spack config add 'config:install_tree:padded_length:128'
+          echo spack config add 'config:install_tree:padded_length:128'
           spack mirror add --oci-username '${{ github.actor }}' --oci-password '${{ secrets.GITHUB_TOKEN }}' --unsigned --autopush local-buildcache 'oci://ghcr.io/${{ github.repository_owner }}/mucoll-buildcache'
           spack config blame config
       - name: Apply Patches
