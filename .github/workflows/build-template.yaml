@@ -36,28 +36,26 @@ jobs:
       #    path: spack                                # Where to clone Spack
       #    buildcache: false                          # No central build cache (incompatible)
       - name: Spack Setup Build Cache
-        shell: spack-bash {0}
         run: |
           . /opt/setup_spack.sh
           spack config add 'config:install_tree:padded_length:128'
           spack mirror add --oci-username '${{ github.actor }}' --oci-password '${{ secrets.GITHUB_TOKEN }}' --unsigned --autopush local-buildcache 'oci://ghcr.io/${{ github.repository_owner }}/mucoll-buildcache'
       - name: Apply Patches
-        shell: spack-bash {0}
         run: |
           whereami=$(pwd)
           cd /opt/spack 
           . ${whereami}/mucoll-spack/.cherry-pick
           cd -
       - name: Spack Repo Setup
-        shell: spack-bash {0}
         run: |
+          . /opt/setup_spack.sh
           spack --version
           spack repo add /opt/spack/var/key4hep-spack
           spack repo add mucoll-spack
           spack compiler find
       - name: Spack Build mucoll-release
-        shell: spack-bash {0}
         run: |
+          . /opt/setup_spack.sh
           spack env activate mucoll-spack/environments/mucoll-release
           spack concretize --reuse
           spack install --only-concrete --no-add --fail-fast
