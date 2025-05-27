@@ -24,14 +24,12 @@ jobs:
           path: mucoll-spack
           ref:  ${{ github.sha }}
       - name: Apply Patches
-        shell: spack-bash {0}
         run: |
           whereami=$(pwd)
           cd /opt/spack 
           . ${whereami}/mucoll-spack/.cherry-pick
           cd -
       - name: Load env and concretize
-        shell: spack-bash {0}
         run: |
           . /opt/setup_spack.sh
           spack --version
