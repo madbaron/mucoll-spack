@@ -1,4 +1,4 @@
-name: concretize-ubuntu
+name: Concretize Stack
 
 on: [pull_request]
 
@@ -7,7 +7,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        os: [alma9, ubuntu24]
         target: [common, release, release-debug]
     uses: ./.github/workflows/concretize-template.yaml
     with:
       target: ${{ matrix.target }}
+      os: ${{ matrix.os }}
