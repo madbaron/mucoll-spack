@@ -1,5 +1,14 @@
-name: Re-build and publish MuColl
-on: [push, workflow_dispatch]
+name: Publish mucoll-sim image
+description: |
+  Loads a mucoll-release stack from spack cache.
+  This workflow builds the image and pushes it to the registry.
+
+on:
+  workflow_call:
+    inputs:
+      os:
+        required: true
+        type: string
 
 env:
   REGISTRY: ghcr.io
@@ -12,13 +21,7 @@ permissions:
 
 jobs:
   build-sim:
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
-      cancel-in-progress: true
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        os: [{dir: AlmaLinux9,suffix: alma9}]
     steps:
       - name: Free Disk Space (Ubuntu)
         uses: endersonmenezes/free-disk-space@v2
@@ -48,16 +51,21 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ github.repository_owner }}/mucoll-sim
+          images: ${{ env.REGISTRY }}/${{ github.repository_owner }}/mucoll-sim-${{ inputs.os }}
       - name: Build and Push
         id: docker_build
         uses: docker/build-push-action@v6
         with:
           push: true
-          context: ./${{matrix.os.dir}}
-          file: ./${{matrix.os.dir}}/Dockerfile-sim
+          context: ./Docker
+          file: ./Docker/Dockerfile-sim
           build-args: |
+            OS=${{ inputs.os }}
             GITHUB_REPOSITORY=${{ github.repository }}
             MUCOLL_SHA=${{ github.sha }}
+            SPACK_BUILDCACHE=oci://ghcr.io/${{ github.repository_owner }}/mucoll-buildcache
+            OCI_USERNAME=${{ github.actor }}
+          secrets: |
+            "ocipass=${{ secrets.GITHUB_TOKEN }}"
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

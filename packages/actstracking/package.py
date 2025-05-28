@@ -25,7 +25,7 @@ class Actstracking(CMakePackage, MCIlcsoftpackage):
     version('1.0.0', sha256='0e98f2185920358d9c220883a48df42f3b5282beb32a91a19f9f3f5c1adc103b')
 
     # Ensuring correct ACTS version due to its evolving API
-    depends_on('acts +dd4hep+tgeo+identification+json+fatras')
+    depends_on('acts +dd4hep+tgeo+identification+json+fatras+examples+python')
     depends_on('acts@13 +dd4hep+tgeo+identification+json+fatras', when="@:1.1.0")
 
     depends_on('dd4hep')

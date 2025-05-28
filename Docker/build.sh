@@ -20,13 +20,6 @@ set -e
 
 # The actual building
 echo "### Building Docker images: ${REPOSITORY}/<IMAGE>:${VERSION}-${SUFFIX}"
-echo
-#
-echo "### Building the Spack image" && \
-${DOCKER} build -t ${REPOSITORY}/mucoll-spack:${VERSION}-${SUFFIX} --build-arg REPOSITORY=${REPOSITORY} --build-arg VERSION=${VERSION} -f Dockerfile-spack .
-#
-echo "### Building the minimal Spack image" && \
-${DOCKER} build -t ${REPOSITORY}/mucoll-minimal:${VERSION}-${SUFFIX} --build-arg REPOSITORY=${REPOSITORY} --build-arg VERSION=${VERSION} -f Dockerfile-minimal .
 #
 echo "### Building the MuColl simulation image"
 ${DOCKER} build -t ${REPOSITORY}/mucoll-sim:${VERSION}-${SUFFIX} --build-arg REPOSITORY=${REPOSITORY} --build-arg VERSION=${VERSION} -f Dockerfile-sim .
