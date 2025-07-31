@@ -9,6 +9,9 @@ spack:
     py-setuptools:
       require: "@69"
     
+    dd4hep:
+      require: '@1.31: +edm4hep+lcio+xercesc+hepmc3'
+
     k4geo:
       require: '@main'
     k4gaudipandora:
