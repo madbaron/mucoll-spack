@@ -1,40 +1,35 @@
 spack:
   packages:
-    clhep:
-      require: '@2.4.7.1 ~cms~ipo'
     acts:
       require: '@32.1.0'
-    k4simdelphes:
-      require: '@00-06-02 ~delphes_hepmc'
+    
     mucoll-stack:
-      require: '@2.9 +devtools+pytools+ml'
+      require: '@master +devtools+pytools+ml'
 
-    # The version seems to be necessary, otherwise it defaults to an older version
-    root:
-      require: '@6.32: +davix+fftw+gsl+math+minuit+mlp+opengl~postgres~pythia8+python+r+roofit+root7+rpath~shadow+spectrum+sqlite+ssl+tbb+threads+tmva+tmva-cpu+unuran+vc+vdt+x+xml+xrootd cxxstd=20'
+    py-setuptools:
+      require: "@69"
+    
+    k4geo:
+      require: '@main'
+    k4gaudipandora:
+      require: '@main'
+    k4reco:
+      require: '@main'
+    k4actstracking:
+      require: '@main'
 
-    geant4:
-      require: +opengl+qt~vecgeom cxxstd=20
-
-    overlay:
-      require: '@0.25'
-    lcgeo:
-      require: '@0.20'
-    lcio:
-      require: '@2.22'
     forwardtracking:
       require: '@1.14.2'
     conformaltracking:
       require: '@1.12.1'
     marlintrkprocessors:
-      require: '@2.15.2'
-    actstracking:
-      require: '@1.2.2'
+      require: '@2.16'
     muoncvxddigitiser:
-      require: '@0.2'
-
-    ilcutil:
-      require: '@1.7.2'
+      require: '@0.2.2'
+    ddmarlinpandora:
+      require: +monitoring
+    lccontent:
+      require: +monitoring
 
     # Use the system OpenGL as recommended by spack
     # See https://github.com/key4hep/key4hep-spack/issues/318 and
