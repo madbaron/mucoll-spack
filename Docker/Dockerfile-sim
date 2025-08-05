@@ -49,7 +49,8 @@ RUN . /opt/setup_spack.sh && \
 
 # Concretizing the MuColl stack reusing system packages as external
 RUN . ${HOME}/setup_env.sh && \
-    spack find conformaltracking && \
+    spack info conformaltracking && \
+    spack find Conformaltracking && \
     spack concretize --reuse
 
 # Installing fragments of dependency tree in separate layers for cached debugging
