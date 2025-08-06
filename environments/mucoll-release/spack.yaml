@@ -11,7 +11,7 @@ spack:
       require: "@69"
 
     dd4hep:
-      require: '@1.31: +edm4hep+lcio+xercesc+hepmc3'
+      require: '+edm4hep+lcio+xercesc+hepmc3'
 
     k4geo:
       require: '@main'
@@ -83,6 +83,7 @@ spack:
       target: [x86_64]
       variants: build_type=RelWithDebInfo cxxstd=20
       buildable: true
+      compiler: []
       providers:
         gl: [mesa]
         glu: [mesa]
