@@ -21,6 +21,8 @@ spack:
       require: '@main'
     k4actstracking:
       require: '@main'
+    podio:
+      require: '@1.3'
 
     forwardtracking:
       require: '@1.14.2'
