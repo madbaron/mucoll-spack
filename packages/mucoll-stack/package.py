@@ -10,8 +10,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from mucoll_utils import *
 
 from spack.package import *
-from spack.pkg.k4.key4hep_stack import Key4hepPackage, install_setup_script
-
+from spack.pkg.k4.key4hep_stack import *
 
 class MucollStack(BundlePackage, Key4hepPackage):
     """Bundle package to install Muon Collider Software Stack"""
@@ -28,6 +27,7 @@ class MucollStack(BundlePackage, Key4hepPackage):
     version(datetime.today().strftime('%Y-%m-%d'))
 
     version("master", branch="master")
+    version("full_gaudi_test", branch="full_gaudi_test")
 
     ### stable build
     # to install exact specified version for every dependecy
@@ -54,8 +54,8 @@ class MucollStack(BundlePackage, Key4hepPackage):
     depends_on('k4marlinwrapper')
     depends_on('k4simdelphes')
     depends_on('k4simgeant4')
-    depends_on('k4reco')
-    depends_on('k4gaudipandora')
+    #depends_on('k4reco')
+    #depends_on('k4gaudipandora')
     depends_on('k4actstracking')
     depends_on('delphes')
 
@@ -149,7 +149,6 @@ class MucollStack(BundlePackage, Key4hepPackage):
         # (see https://github.com/key4hep/key4hep-spack/issues/170)
         env.set("LC_ALL", "C")
         env.set('MUCOLL_STACK', os.path.join(self.spec.prefix, 'setup.sh'))
-        env.set('MUCOLL_GEO', os.path.join(self.spec['lcgeo'].prefix.share.lcgeo.compact, 'MuColl/MuColl_v1/MuColl_v1.xml'))
         env.set('MUCOLL_RELEASE_VERSION', self.spec.version)
 
         # ROOT needs to be in LD_LIBRARY_PATH to prevent using system installations
@@ -161,15 +160,6 @@ class MucollStack(BundlePackage, Key4hepPackage):
             env.prepend_path("CPATH", self.spec["vdt"].prefix.include)
             # When building podio with +rntuple there are warnings constantly without this
             env.prepend_path("LD_LIBRARY_PATH", self.spec["vdt"].libs.directories[0])
-
-        # remove when https://github.com/spack/spack/pull/37881 is merged
-        env.prepend_path('LD_LIBRARY_PATH', self.spec['podio'].libs.directories[0])
-        env.prepend_path('LD_LIBRARY_PATH', self.spec['edm4hep'].libs.directories[0])
-        env.prepend_path('LD_LIBRARY_PATH', self.spec['lcio'].libs.directories[0])
-
-        # remove when https://github.com/spack/spack/pull/38015 is merged
-        env.prepend_path('LD_LIBRARY_PATH', self.spec['dd4hep'].prefix.lib)
-        env.prepend_path('LD_LIBRARY_PATH', self.spec['dd4hep'].prefix.lib64)
 
     def install(self, spec, prefix):
         return install_setup_script(self, spec, prefix, 'MUCOLL_LATEST_SETUP_PATH')

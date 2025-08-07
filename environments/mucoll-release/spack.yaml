@@ -5,22 +5,24 @@ spack:
       require: '@32.1.0'
 
     mucoll-stack:
-      require: '@master: +devtools+pytools+ml'
+      require: '@full_gaudi_test: +devtools+pytools' #+ml'
 
     py-setuptools:
       require: "@69"
 
     dd4hep:
-      require: '@1.31: +edm4hep+lcio+xercesc+hepmc3'
+      require: '+edm4hep+lcio+xercesc+hepmc3'
 
     k4geo:
       require: '@main'
-    k4gaudipandora:
-      require: '@main'
-    k4reco:
-      require: '@main'
+    #k4gaudipandora:
+    #  require: '@main'
+    #k4reco:
+    #  require: '@main'
     k4actstracking:
       require: '@main'
+    edm4hep:
+      require: '@0.99.1'
 
     forwardtracking:
       require: '@1.14.2'
@@ -81,6 +83,7 @@ spack:
       target: [x86_64]
       variants: build_type=RelWithDebInfo cxxstd=20
       buildable: true
+      compiler: []
       providers:
         gl: [mesa]
         glu: [mesa]
