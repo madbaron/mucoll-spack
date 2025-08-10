@@ -48,6 +48,12 @@ class MucollStack(BundlePackage, Key4hepPackage):
     variant('ml', default=False, description='Build with machine learning tools')
     variant('pytools', default=False, description='Build with python tools')
 
+    # Add compilers to the build dependencies
+    # so that we have them available to set them in the env script
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+    depends_on("fortran", type="build")
+
     ############################### Key4hep ###############
     #######################################################
     depends_on('whizard +lcio +openloops')
