@@ -15,8 +15,8 @@ spack:
 
     k4geo:
       require: '@main'
-    #k4gaudipandora:
-    #  require: '@main'
+    k4gaudipandora:
+      require: '@main'
     #k4reco:
     #  require: '@main'
     k4actstracking:
@@ -83,7 +83,6 @@ spack:
       target: [x86_64]
       variants: build_type=RelWithDebInfo cxxstd=20
       buildable: true
-      compiler: []
       providers:
         gl: [mesa]
         glu: [mesa]
