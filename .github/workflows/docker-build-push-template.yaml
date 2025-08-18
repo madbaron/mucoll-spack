@@ -70,8 +70,8 @@ jobs:
         with:
           push: true
           platforms: linux/${{ inputs.platform }}
-          context: ./Docker/${{inputs.os}}
-          file: ./Docker/${{inputs.os}}/Dockerfile-sim
+          context: ./Docker
+          file: ./Docker/Dockerfile-sim
           build-args: |
             OS=${{ inputs.os }}
             GITHUB_REPOSITORY=${{ github.repository }}
