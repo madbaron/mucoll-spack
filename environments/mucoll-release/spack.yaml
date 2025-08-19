@@ -15,6 +15,10 @@ spack:
     dd4hep:
       require: '+edm4hep+lcio+xercesc+hepmc3'
 
+    kitrackmarlin:
+      require: '@arm-timer-fix'
+      # The arm-timer-fix branch is needed to fix the build on ARM architectures
+
     overlay:
       require: '@0.25'
     lcgeo:
