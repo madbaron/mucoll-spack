@@ -13,7 +13,7 @@ packages:
   k4simdelphes:
     variants: ~delphes_hepmc
   all:
-    target: [x86_64]
+    target: []
     variants: build_type=Release cxxstd=20
     buildable: true
     providers:
