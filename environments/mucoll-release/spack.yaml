@@ -12,12 +12,8 @@ spack:
     py-setuptools:
       require: "@69"
 
-    # The version seems to be necessary, otherwise it defaults to an older version
-    root:
-      require: '@6.32: +davix+fftw+gsl+math+minuit+mlp+opengl~postgres~pythia8+python+r+roofit+root7+rpath~shadow+spectrum+sqlite+ssl+tbb+threads+tmva+tmva-cpu+unuran+vc+vdt+x+xml+xrootd cxxstd=20'
-
     dd4hep:
-      require: '@1.31: +edm4hep+lcio+xercesc+hepmc3'
+      require: '+edm4hep+lcio+xercesc+hepmc3'
 
     overlay:
       require: '@0.25'
@@ -83,7 +79,7 @@ spack:
         prefix: /usr
 
     all:
-      target: [x86_64]
+      target: []
       variants: build_type=RelWithDebInfo cxxstd=20
       buildable: true
       providers:
