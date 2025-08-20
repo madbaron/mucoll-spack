@@ -7,7 +7,8 @@ spack:
       require: '@32.1.0'
 
     mucoll-stack:
-      require: '@master: +devtools+pytools+ml'
+      require: '@master: +devtools+pytools' 
+      #+ml' temporarily removed because of AVX512 issues with alma9 build
 
     py-setuptools:
       require: "@69"
