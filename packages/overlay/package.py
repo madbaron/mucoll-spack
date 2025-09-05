@@ -16,7 +16,7 @@ class Overlay(CMakePackage, MCIlcsoftpackage):
     maintainers = ['gianelle', 'pandreetto']
 
     version('master',  branch='master')
-    version('0.26',    sha256='d3f3e1a5e2f0e4f3c8e2b1c6f4f7e6b7c8d9e0f1a2b3c4d5e6f7g8h9i0j1k2l3', preferred=True)
+    version('0.26',    sha256='6451adfc5b2e3cbc98c0842442e455866a18138dd55ee9384f243b18c12514e9', preferred=True)
     version('0.25',    sha256='32a840a14b4d74b3689c83ae05ffb63cfa5996c8ab3beb8d83e2d098f2cda18d')
     version('0.24',    sha256='83ddebb4c3e36b9b5bda2acfb658e5fd0fd2b31f5e5a38c54f72601379949c04')
     version('0.23',    sha256='b885bed6c386676e74db21dafde6bc08bcac2a16df89892759415fb8bbb331ed')
