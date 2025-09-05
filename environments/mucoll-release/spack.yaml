@@ -80,7 +80,7 @@ spack:
         prefix: /usr
 
     all:
-      target: []
+      target: [x86_64, aarch64]
       variants: build_type=RelWithDebInfo cxxstd=20
       buildable: true
       providers:
