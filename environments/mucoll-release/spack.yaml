@@ -27,7 +27,7 @@ spack:
     conformaltracking:
       require: '@1.12.1'
     marlintrkprocessors:
-      require: '@2.16'
+      require: '@2.17'
     actstracking:
       require: '@1.3.1'
     muoncvxddigitiser:
