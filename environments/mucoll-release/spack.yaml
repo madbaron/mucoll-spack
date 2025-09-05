@@ -15,12 +15,8 @@ spack:
     dd4hep:
       require: '+edm4hep+lcio+xercesc+hepmc3'
 
-    kitrackmarlin:
-      require: '@arm-timer-fix'
-      # The arm-timer-fix branch is needed to fix the build on ARM architectures
-
     overlay:
-      require: '@0.25'
+      require: '@0.26'
     lcgeo:
       require: '@0.21'
     k4geo:
@@ -92,6 +88,8 @@ spack:
 
   concretizer:
     unify: true
+    targets:
+      host_compatible: true
 
   view: false
 
