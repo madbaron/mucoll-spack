@@ -3,8 +3,6 @@
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
-
-from curses import version
 from spack.pkg.mucoll.mucoll_stack import MCIlcsoftpackage
 from spack.package import *
 
