@@ -7,20 +7,17 @@ spack:
       require: '@32.1.0'
 
     mucoll-stack:
-      require: '@master: +devtools+pytools+ml'
+      require: '@master: +devtools+pytools' 
+      #+ml' temporarily removed because of AVX512 issues with alma9 build
 
-    py-setuptools:
-      require: "@69"
-
-    # The version seems to be necessary, otherwise it defaults to an older version
-    root:
-      require: '@6.32: +davix+fftw+gsl+math+minuit+mlp+opengl~postgres~pythia8+python+r+roofit+root7+rpath~shadow+spectrum+sqlite+ssl+tbb+threads+tmva+tmva-cpu+unuran+vc+vdt+x+xml+xrootd cxxstd=20'
+    #py-setuptools:
+    #  require: "@69"
 
     dd4hep:
-      require: '@1.31: +edm4hep+lcio+xercesc+hepmc3'
+      require: '+edm4hep+lcio+xercesc+hepmc3'
 
     overlay:
-      require: '@0.25'
+      require: '@0.26'
     lcgeo:
       require: '@0.21'
     k4geo:
@@ -30,9 +27,9 @@ spack:
     conformaltracking:
       require: '@1.12.1'
     marlintrkprocessors:
-      require: '@2.16'
+      require: '@2.17.1'
     actstracking:
-      require: '@1.3.1'
+      require: '@1.3.2'
     muoncvxddigitiser:
       require: '@0.2.2'
     ddmarlinpandora:
@@ -83,7 +80,7 @@ spack:
         prefix: /usr
 
     all:
-      target: [x86_64]
+      target: [x86_64, aarch64]
       variants: build_type=RelWithDebInfo cxxstd=20
       buildable: true
       providers:
@@ -92,6 +89,8 @@ spack:
 
   concretizer:
     unify: true
+    targets:
+      host_compatible: true
 
   view: false
 

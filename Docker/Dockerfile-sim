@@ -4,7 +4,8 @@
 ###############################################################################
 
 ARG OS=alma9
-FROM ghcr.io/key4hep/key4hep-externals-${OS}:mucoll-2025-05-26
+#FROM ghcr.io/key4hep/key4hep-externals-${OS}:mucoll-2025-05-26
+FROM ghcr.io/key4hep/key4hep-externals-${OS}:latest
 
 ARG MUCOLL_SHA=e49a0639ff987a84fa0c6263e068776f9d7b6f67
 ARG GITHUB_REPOSITORY=muoncollidersoft/mucoll-spack
@@ -30,8 +31,9 @@ ARG OCI_USERNAME
 RUN --mount=type=secret,id=ocipass \
     OCI_PASSWORD=$(cat /run/secrets/ocipass) && \
     . /opt/setup_spack.sh && \
-    spack repo add --scope system ${SPACK_ROOT}/var/mucoll-spack && \
+    spack repo add ${SPACK_ROOT}/var/mucoll-spack && \
     if [ -n "${SPACK_BUILDCACHE}" ]; then \
+        spack mirror remove local-buildcache || true; \
         spack mirror add --oci-username "${OCI_USERNAME}" --oci-password "${OCI_PASSWORD}" --unsigned --autopush local-buildcache "${SPACK_BUILDCACHE}";\
     fi
 
@@ -54,6 +56,7 @@ RUN . ${HOME}/setup_env.sh && \
 ENV SPACK_INSTALL_OPTS="--only-concrete --no-add --fail-fast"
 
 RUN . ${HOME}/setup_env.sh && \
+    export onnxruntime_ENABLE_AVX512_VNNI=OFF && \
     spack spec -NIt && \
     spack install ${SPACK_INSTALL_OPTS} && \
     spack clean -a
