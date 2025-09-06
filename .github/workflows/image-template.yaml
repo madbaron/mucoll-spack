@@ -54,6 +54,16 @@ jobs:
         with:
           images: ${{ inputs.registry }}/${{ github.repository_owner }}/mucoll-sim-${{ inputs.os }}
           flavor: latest=true
+      - name: Change string case for amd64
+        id: lowercase-amd64
+        uses: Entepotenz/change-string-case-action-min-dependencies@v1
+        with:
+          string: ${{ needs.build-linux-amd64.outputs.image-uri }}
+      - name: Change string case for arm64
+        id: lowercase-arm64
+        uses: Entepotenz/change-string-case-action-min-dependencies@v1
+        with:
+          string: ${{ needs.build-linux-arm64.outputs.image-uri }}
       - name: Create manifest
         id: build
         uses: int128/docker-manifest-create-action@v2
@@ -61,5 +71,5 @@ jobs:
           index-annotations: ${{ steps.meta.outputs.labels }}
           tags: ${{ steps.meta.outputs.tags }}
           sources: |
-            ${{ needs.build-linux-amd64.outputs.image-uri }}
-            ${{ needs.build-linux-arm64.outputs.image-uri }}
+            ${{ steps.lowercase-amd64.outputs.lowercase }}
+            ${{ steps.lowercase-arm64.outputs.lowercase }}
